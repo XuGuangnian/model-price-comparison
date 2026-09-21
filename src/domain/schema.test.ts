@@ -21,4 +21,9 @@ describe("data snapshot", () => {
       expect(offer.evidence.note.length).toBeGreaterThan(0);
     }
   });
+
+  it("uses a single non-official evidence level", () => {
+    const snapshot = snapshotSchema.parse(snapshotJson);
+    expect(new Set(snapshot.offers.map((offer) => offer.evidence.level))).toEqual(new Set(["official", "estimated"]));
+  });
 });

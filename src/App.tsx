@@ -54,7 +54,7 @@ export function App() {
   const [selectedChannels, setSelectedChannels] = useState(new Set(allChannels));
   const [selectedKinds, setSelectedKinds] = useState(new Set<"api" | "subscription">(["api", "subscription"]));
   const [selectedEvidence, setSelectedEvidence] = useState(
-    new Set<EvidenceLevel>(["official", "derived", "estimated"]),
+    new Set<EvidenceLevel>(["official", "estimated"]),
   );
   const [showPareto, setShowPareto] = useState(true);
   const [controlsOpen, setControlsOpen] = useState(false);
@@ -86,7 +86,7 @@ export function App() {
     setScenario(defaultScenario);
     setSelectedChannels(new Set(allChannels));
     setSelectedKinds(new Set(["api", "subscription"]));
-    setSelectedEvidence(new Set(["official", "derived", "estimated"]));
+    setSelectedEvidence(new Set(["official", "estimated"]));
     setMinimumIndex(defaultMinimumIndex);
   }
 

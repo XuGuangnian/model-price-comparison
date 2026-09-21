@@ -72,7 +72,7 @@ export function ComparisonTable({ points, currency, usdToCny }: ComparisonTableP
               </td>
               <td>
                 <span className={`evidence-tag evidence-tag--${point.offer.evidence.level}`}>
-                  {{ official: "官方", derived: "推导", estimated: "≈ 估算" }[point.offer.evidence.level]}
+                  {{ official: "官方", estimated: "≈ 估算" }[point.offer.evidence.level]}
                 </span>
               </td>
               <td>

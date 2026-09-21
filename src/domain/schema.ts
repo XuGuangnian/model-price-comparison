@@ -3,7 +3,7 @@ import { z } from "zod";
 const dateSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 const urlSchema = z.string().url();
 
-export const evidenceLevelSchema = z.enum(["official", "derived", "estimated"]);
+export const evidenceLevelSchema = z.enum(["official", "estimated"]);
 
 export const evidenceSchema = z.object({
   level: evidenceLevelSchema,

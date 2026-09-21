@@ -8,7 +8,7 @@ const scenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 
 describe("comparison points", () => {
   it("builds every priced API and subscription offer", () => {
-    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(34);
+    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(38);
   });
 
   it("uses the cheapest API offer as the subscription reference", () => {
@@ -42,6 +42,13 @@ describe("comparison points", () => {
     for (const modelId of ["gpt-5-5", "claude-fable-5", "muse-spark-1-2"]) {
       expect(modelIds.has(modelId)).toBe(true);
     }
+  });
+
+  it("does not invent a Claude Fable subscription allowance", () => {
+    const points = buildComparisonPoints(snapshot, scenario);
+    expect(points.filter((point) => point.model.id === "claude-fable-5-1" && point.offer.kind === "subscription")).toHaveLength(0);
+    expect(points.filter((point) => point.model.id === "claude-opus-5" && point.offer.kind === "subscription")).toHaveLength(2);
+    expect(points.filter((point) => point.model.id === "claude-sonnet-5" && point.offer.kind === "subscription")).toHaveLength(2);
   });
 
   it("identifies only non-dominated points as Pareto points", () => {

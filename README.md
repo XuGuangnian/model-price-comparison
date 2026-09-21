@@ -42,6 +42,8 @@ Token 额度计划：月 API 等值 = 参考场景 API 成本 × 月 Token 额�
 
 当前 Codex Pro 20x 的 Astra、Sol、Luna 使用 Codex Radar 的单模型周 API 等值；GLM Coding Plan 使用官方 95% 缓存命中率 Token 区间中点；其他估算值均在目录中保留来源与说明。
 
+Claude Fable 5.1 没有可用的订阅额度实测，因此只展示 API。Claude Max 订阅仅映射到有模型级数据的 Opus 5 和 Sonnet 5；额度来自 CodingPlan.fyi 的公开 `plan-models.json`，并统一标记为估算。
+
 最低 Index 默认取当前快照中 GPT-5.6 Luna 的 `37.3`，可在参数面板直接输入任意 `0–100` 数值。
 
 Codex Pro 5x 按同模型 Pro 20x 总额度的四分之一计算，月费为二分之一，因此每 1 亿 Token 等效成本固定为 Pro 20x 的两倍。没有模型级额度依据的 Terra 和 Plus 不生成订阅估算。模型是否进入图表只由当前最低 Index 决定，不因存在更新版本而排除旧模型。
@@ -53,8 +55,7 @@ Codex Pro 5x 按同模型 Pro 20x 总额度的四分之一计算，月费为二�
 人工价格、订阅估算和模型映射位于 [`data/catalog.json`](data/catalog.json)，生成快照位于 [`src/data/snapshot.json`](src/data/snapshot.json)。订阅估值使用 `api-credit` 或 `token-quota` 作为数据来源，但两者最终都会生成同一种优惠倍数。每条方案必须包含来源、日期、说明和证据等级：
 
 - `official`：供应商直接公布。
-- `derived`：由供应商公布的月费、额度或价格推导。
-- `estimated`：没有固定公开额度，按注明的工作负载假设估算。
+- `estimated`：由公开数据计算、社区实测或工作负载估算；必须在说明中记录具体方法和限制。
 
 刷新 Artificial Analysis 数据：
 
@@ -77,7 +78,7 @@ npm run data:check
 ## 验证
 
 ```bash
-npm run check       # 数据校验、20 个单元/组件测试、类型检查、生产构建
+npm run check       # 数据校验、22 个单元/组件测试、类型检查、生产构建
 npm run test:e2e    # Chromium 桌面与移动端 E2E、Canvas 像素检查
 ```
 

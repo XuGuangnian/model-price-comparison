@@ -138,7 +138,6 @@ td > span, .numeric-cell span { display: block; margin-top: 2px; color: #7a807a;
 .sort-button { padding: 0; display: inline-flex; align-items: center; gap: 5px; border: 0; background: transparent; cursor: pointer; font-family: inherit; font-size: inherit; text-transform: inherit; }
 .evidence-tag { width: fit-content; padding: 3px 6px; border-radius: 2px; font-family: "IBM Plex Mono", monospace; font-size: 9px; }
 .evidence-tag--official { color: #174d39; background: #d5eadf; }
-.evidence-tag--derived { color: #73510b; background: #eee0b9; }
 .evidence-tag--estimated { color: #813723; background: transparent; border: 1px dashed #d4765e; }
 td a { display: inline-flex; align-items: center; gap: 5px; color: #42615f; font-family: "IBM Plex Mono", monospace; font-size: 9px; text-decoration: none; }
 td a:hover { text-decoration: underline; }

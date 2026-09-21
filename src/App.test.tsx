@@ -12,8 +12,8 @@ describe("comparison workbench", () => {
   it("renders the default filtered snapshot", async () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "模型价格图谱" })).toBeInTheDocument();
-    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("13 模型");
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("32 points · USD");
+    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("15 模型");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("36 points · USD");
     expect(screen.getByText("DeepSeek V4 Pro 0813")).toBeInTheDocument();
     expect(screen.getByText("GPT-5.5")).toBeInTheDocument();
     expect(screen.getByRole("slider", { name: /输入 : 输出/ })).toHaveValue("90");
@@ -23,16 +23,16 @@ describe("comparison workbench", () => {
   it("switches currency while keeping unified subscription valuation", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "CNY" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("32 points · CNY");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("36 points · CNY");
     expect(screen.getByText("订阅按月度 API 等值自动折算")).toBeInTheDocument();
   });
 
   it("filters estimates and applies a custom Index threshold", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("checkbox", { name: "估算" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("28 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("13 points");
     fireEvent.change(screen.getByRole("spinbutton", { name: "最低 Intelligence Index" }), { target: { value: "0" } });
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("30 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("15 points");
   });
 
   it("opens and closes the mobile parameter drawer", () => {

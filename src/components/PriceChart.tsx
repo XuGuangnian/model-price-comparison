@@ -192,7 +192,7 @@ export function PriceChart(props: PriceChartProps) {
             const point = data?.point;
             if (!point) return "";
             const benchmark = point.model.benchmark;
-            const evidence = { official: "官方", derived: "推导", estimated: "估算" }[point.offer.evidence.level];
+            const evidence = { official: "官方", estimated: "估算" }[point.offer.evidence.level];
             const subscription = point.subscriptionCost;
             const extra =
               point.offer.kind === "subscription"

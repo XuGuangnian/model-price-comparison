@@ -119,6 +119,38 @@
       "aaSlug": "claude-fable-5-1"
     },
     {
+      "id": "claude-opus-5",
+      "name": "Claude Opus 5",
+      "provider": "Anthropic",
+      "family": "Claude",
+      "version": "Opus 5 · max",
+      "releaseDate": "2026-07-24",
+      "aaSlug": "claude-opus-5",
+      "benchmark": {
+        "artificialAnalysisId": "b8fc61f7-5e9a-49e6-8547-6ac56db24627",
+        "intelligenceIndex": 50.8,
+        "globalRank": 6,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "claude-sonnet-5",
+      "name": "Claude Sonnet 5",
+      "provider": "Anthropic",
+      "family": "Claude",
+      "version": "Sonnet 5 · max",
+      "releaseDate": "2026-06-30",
+      "aaSlug": "claude-sonnet-5",
+      "benchmark": {
+        "artificialAnalysisId": "23c86e4a-c769-43c0-a056-79e3cd15834f",
+        "intelligenceIndex": 38.2,
+        "globalRank": 43,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
       "id": "muse-spark-1-2",
       "name": "Muse Spark 1.2",
       "provider": "Meta",
@@ -162,7 +194,7 @@
       "label": "OpenAI API",
       "verifyAaPricing": true,
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://artificialanalysis.ai/models/gpt-5-5",
         "asOf": "2026-09-21",
         "note": "已弃用但仍达到 Index 门槛；AA 记录的首方标准价格。"
@@ -342,7 +374,7 @@
       "label": "Z AI API",
       "verifyAaPricing": true,
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://artificialanalysis.ai/models/glm-5-3",
         "asOf": "2026-09-21",
         "note": "AA 记录的 Z AI 首方价格；缓存写入未单列。"
@@ -382,7 +414,7 @@
       "label": "Anthropic API",
       "verifyAaPricing": true,
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://artificialanalysis.ai/models/claude-fable-5",
         "asOf": "2026-09-21",
         "note": "旧版仍达到 Index 门槛；缓存读取为 $1/MTok。"
@@ -412,6 +444,46 @@
         "cacheReadUsdPerMillion": 0.25,
         "cacheWriteUsdPerMillion": 12.5,
         "outputUsdPerMillion": 50
+      }
+    },
+    {
+      "id": "anthropic-api-opus-5",
+      "kind": "api",
+      "modelId": "claude-opus-5",
+      "provider": "Anthropic",
+      "label": "Anthropic API",
+      "verifyAaPricing": true,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://claude.com/pricing",
+        "asOf": "2026-09-21",
+        "note": "5 分钟缓存 TTL 的标准价格。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 5,
+        "cacheReadUsdPerMillion": 0.5,
+        "cacheWriteUsdPerMillion": 6.25,
+        "outputUsdPerMillion": 25
+      }
+    },
+    {
+      "id": "anthropic-api-sonnet-5",
+      "kind": "api",
+      "modelId": "claude-sonnet-5",
+      "provider": "Anthropic",
+      "label": "Anthropic API",
+      "verifyAaPricing": true,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://claude.com/pricing",
+        "asOf": "2026-09-21",
+        "note": "5 分钟缓存 TTL 的标准价格。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 2,
+        "cacheReadUsdPerMillion": 0.2,
+        "cacheWriteUsdPerMillion": 2.5,
+        "outputUsdPerMillion": 10
       }
     },
     {
@@ -488,7 +560,7 @@
         "periodLabel": "周"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://codexradar.com/",
         "asOf": "2026-09-20",
         "note": "总额度按同模型 Pro 20x 的 1/4，月费为 1/2；每亿 Token 成本为 20x 的 2 倍。"
@@ -508,7 +580,7 @@
         "periodLabel": "周"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://codexradar.com/",
         "asOf": "2026-09-20",
         "note": "Luna 单模型周 API 等值 $1,145.10，按每月 4 周计算。"
@@ -528,7 +600,7 @@
         "periodLabel": "周"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://codexradar.com/",
         "asOf": "2026-09-20",
         "note": "总额度按同模型 Pro 20x 的 1/4，月费为 1/2；每亿 Token 成本为 20x 的 2 倍。"
@@ -548,7 +620,7 @@
         "periodLabel": "周"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://codexradar.com/",
         "asOf": "2026-09-20",
         "note": "Sol 单模型周 API 等值 $1,919.83，按每月 4 周计算。"
@@ -568,7 +640,7 @@
         "periodLabel": "周"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://codexradar.com/",
         "asOf": "2026-09-20",
         "note": "总额度按同模型 Pro 20x 的 1/4，月费为 1/2；每亿 Token 成本为 20x 的 2 倍。"
@@ -588,7 +660,7 @@
         "periodLabel": "周"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://codexradar.com/",
         "asOf": "2026-09-20",
         "note": "Astra 单模型周 API 等值 $1,463.00，按每月 4 周计算。"
@@ -608,7 +680,7 @@
         "periodLabel": "月"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://dev.opencode.ai/go",
         "asOf": "2026-09-21",
         "note": "官方列出 Luna 每月 $15 模型用量，月费 $10。"
@@ -628,7 +700,7 @@
         "periodLabel": "月"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://dev.opencode.ai/go",
         "asOf": "2026-09-21",
         "note": "DeepSeek V4.1 Flash 当前限时每月 $60 模型用量，月费 $10。"
@@ -648,7 +720,7 @@
         "periodLabel": "月"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
         "note": "官方说明 $10 月费可获得最高 $70 模型 Credits。"
@@ -668,7 +740,7 @@
         "periodLabel": "月"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
         "note": "按 GOAT 最高每月 $70 模型 Credits 估算。"
@@ -688,7 +760,7 @@
         "periodLabel": "月"
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
         "note": "按 GOAT 最高每月 $70 模型 Credits 估算。"
@@ -713,7 +785,7 @@
         }
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
         "asOf": "2026-09-21",
         "note": "官方 95% 命中区间 48M–97M Tokens/周取中点，每月按 4 周。"
@@ -738,7 +810,7 @@
         }
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
         "asOf": "2026-09-21",
         "note": "官方 95% 命中区间 290M–580M Tokens/周取中点，每月按 4 周。"
@@ -763,7 +835,7 @@
         }
       },
       "evidence": {
-        "level": "derived",
+        "level": "estimated",
         "sourceUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
         "asOf": "2026-09-21",
         "note": "官方 95% 命中区间 676M–1,352M Tokens/周取中点，每月按 4 周。"
@@ -810,54 +882,44 @@
       }
     },
     {
-      "id": "claude-max5",
+      "id": "claude-max5-opus",
       "kind": "subscription",
-      "modelId": "claude-fable-5-1",
+      "modelId": "claude-opus-5",
       "provider": "Anthropic",
       "label": "Claude Max 5x",
       "monthlyFeeUsd": 100,
-      "valuation": {
-        "basis": "token-quota",
-        "tokensPerPeriod": 1040000000,
-        "periodsPerMonth": 1,
-        "periodLabel": "月",
-        "referenceScenario": {
-          "inputShare": 0.9,
-          "cacheReadRate": 0.95,
-          "cacheWriteRate": 0
-        }
-      },
-      "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
-        "asOf": "2026-09-21",
-        "note": "公开估算 2,080M Tokens/月；Fable 最多占周额度 50%，按 1,040M 计算。"
-      }
+      "valuation": { "basis": "token-quota", "tokensPerPeriod": 3344500000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
+      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "社区额度数据：Opus 5 月额度 3,344.5M Tokens；95% 缓存命中、0.5% 输出占比，数据可能存在偏差。" }
     },
     {
-      "id": "claude-max20",
+      "id": "claude-max20-opus",
       "kind": "subscription",
-      "modelId": "claude-fable-5-1",
+      "modelId": "claude-opus-5",
       "provider": "Anthropic",
       "label": "Claude Max 20x",
       "monthlyFeeUsd": 200,
-      "valuation": {
-        "basis": "token-quota",
-        "tokensPerPeriod": 4160000000,
-        "periodsPerMonth": 1,
-        "periodLabel": "月",
-        "referenceScenario": {
-          "inputShare": 0.9,
-          "cacheReadRate": 0.95,
-          "cacheWriteRate": 0
-        }
-      },
-      "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
-        "asOf": "2026-09-21",
-        "note": "公开估算 8,320M Tokens/月；Fable 最多占周额度 50%，按 4,160M 计算。"
-      }
+      "valuation": { "basis": "token-quota", "tokensPerPeriod": 6689000000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
+      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "社区额度数据：Opus 5 月额度 6,689M Tokens；95% 缓存命中、0.5% 输出占比，数据可能存在偏差。" }
+    },
+    {
+      "id": "claude-max5-sonnet",
+      "kind": "subscription",
+      "modelId": "claude-sonnet-5",
+      "provider": "Anthropic",
+      "label": "Claude Max 5x",
+      "monthlyFeeUsd": 100,
+      "valuation": { "basis": "token-quota", "tokensPerPeriod": 5574100000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
+      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "Sonnet 家族 credits 系数推算：5,574.1M Tokens/月；未针对 Sonnet 5 单独实测。" }
+    },
+    {
+      "id": "claude-max20-sonnet",
+      "kind": "subscription",
+      "modelId": "claude-sonnet-5",
+      "provider": "Anthropic",
+      "label": "Claude Max 20x",
+      "monthlyFeeUsd": 200,
+      "valuation": { "basis": "token-quota", "tokensPerPeriod": 11148300000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
+      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "Sonnet 家族 credits 系数推算：11,148.3M Tokens/月；未针对 Sonnet 5 单独实测。" }
     }
   ]
 }

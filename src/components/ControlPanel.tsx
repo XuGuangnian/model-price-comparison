@@ -21,7 +21,6 @@ type ControlPanelProps = {
 
 const evidenceLabels: Record<EvidenceLevel, string> = {
   official: "官方",
-  derived: "推导",
   estimated: "估算",
 };
 
