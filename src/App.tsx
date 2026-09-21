@@ -1,8 +1,7 @@
 import { ChartNoAxesCombined, Database, Info, SlidersHorizontal, TrendingUp } from "lucide-react";
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { ComparisonTable } from "./components/ComparisonTable";
 import { ControlPanel } from "./components/ControlPanel";
-import { PriceChart } from "./components/PriceChart";
 import snapshotJson from "./data/snapshot.json";
 import { buildComparisonPoints } from "./domain/comparison";
 import type { ComparisonScenario, SubscriptionMode } from "./domain/pricing";
@@ -11,6 +10,7 @@ import { snapshotSchema, type EvidenceLevel } from "./domain/schema";
 const snapshot = snapshotSchema.parse(snapshotJson);
 const defaultScenario: ComparisonScenario = { inputShare: 0.8, cacheReadRate: 0.5, cacheWriteRate: 0 };
 const allChannels = [...new Set(snapshot.offers.map((offer) => offer.provider))].sort();
+const PriceChart = lazy(() => import("./components/PriceChart").then((module) => ({ default: module.PriceChart })));
 
 function SegmentedControl<T extends string>({
   label,
@@ -191,15 +191,17 @@ export function App() {
             <span><i className="dot dot--subscription" />订阅</span>
             <span><i className="dot dot--estimate" />估算</span>
           </div>
-          <PriceChart
-            points={points}
-            currency={currency}
-            usdToCny={snapshot.exchangeRate.usdToCny}
-            scale={scale}
-            lunaThreshold={lunaThreshold}
-            showPareto={showPareto}
-            subscriptionMode={subscriptionMode}
-          />
+          <Suspense fallback={<div className="price-chart chart-loading">正在绘制价格分布…</div>}>
+            <PriceChart
+              points={points}
+              currency={currency}
+              usdToCny={snapshot.exchangeRate.usdToCny}
+              scale={scale}
+              lunaThreshold={lunaThreshold}
+              showPareto={showPareto}
+              subscriptionMode={subscriptionMode}
+            />
+          </Suspense>
           <div className="chart-footnote">
             <Info size={14} />
             <span>标准文本 Token；不含 Batch、Fast、长上下文、工具调用与缓存存储费。</span>
