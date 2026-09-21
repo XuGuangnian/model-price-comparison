@@ -8,7 +8,7 @@ const scenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 
 describe("comparison points", () => {
   it("builds every priced API and subscription offer", () => {
-    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(37);
+    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(34);
   });
 
   it("uses the cheapest API offer as the subscription reference", () => {
@@ -23,6 +23,25 @@ describe("comparison points", () => {
     expect(points.find((point) => point.id === "chatgpt-pro20-luna")?.subscriptionCost?.effectiveMultiplier).toBeCloseTo(22.902);
     expect(points.find((point) => point.id === "chatgpt-pro20-sol")?.subscriptionCost?.effectiveMultiplier).toBeCloseTo(38.3966);
     expect(points.find((point) => point.id === "chatgpt-pro20-astra")?.subscriptionCost?.effectiveMultiplier).toBeCloseTo(29.26);
+  });
+
+  it("prices Pro 5x at twice the equivalent cost of Pro 20x", () => {
+    const points = buildComparisonPoints(snapshot, scenario);
+    for (const model of ["luna", "sol", "astra"]) {
+      const pro5 = points.find((point) => point.id === `chatgpt-pro5-${model}`);
+      const pro20 = points.find((point) => point.id === `chatgpt-pro20-${model}`);
+      expect(pro5?.costUsd).toBeCloseTo((pro20?.costUsd ?? 0) * 2);
+      expect(pro5?.subscriptionCost?.effectiveMultiplier).toBeCloseTo(
+        (pro20?.subscriptionCost?.effectiveMultiplier ?? 0) / 2,
+      );
+    }
+  });
+
+  it("retains older models when they clear the Index threshold", () => {
+    const modelIds = new Set(buildComparisonPoints(snapshot, scenario).map((point) => point.model.id));
+    for (const modelId of ["gpt-5-5", "claude-fable-5", "muse-spark-1-2"]) {
+      expect(modelIds.has(modelId)).toBe(true);
+    }
   });
 
   it("identifies only non-dominated points as Pareto points", () => {

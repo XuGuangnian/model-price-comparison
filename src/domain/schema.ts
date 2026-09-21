@@ -27,7 +27,6 @@ export const modelSchema = z.object({
   family: z.string().min(1),
   version: z.string().min(1),
   releaseDate: dateSchema.nullable(),
-  supersedes: z.array(z.string()).default([]),
   benchmark: benchmarkSchema.nullable(),
 });
 

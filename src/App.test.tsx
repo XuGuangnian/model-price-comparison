@@ -12,9 +12,10 @@ describe("comparison workbench", () => {
   it("renders the default filtered snapshot", async () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "模型价格图谱" })).toBeInTheDocument();
-    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("10 模型");
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("35 points · USD");
+    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("13 模型");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("32 points · USD");
     expect(screen.getByText("DeepSeek V4 Pro 0813")).toBeInTheDocument();
+    expect(screen.getByText("GPT-5.5")).toBeInTheDocument();
     expect(screen.getByRole("slider", { name: /输入 : 输出/ })).toHaveValue("90");
     expect(screen.getByRole("slider", { name: /缓存命中/ })).toHaveValue("95");
   });
@@ -22,16 +23,16 @@ describe("comparison workbench", () => {
   it("switches currency while keeping unified subscription valuation", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "CNY" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("35 points · CNY");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("32 points · CNY");
     expect(screen.getByText("订阅按月度 API 等值自动折算")).toBeInTheDocument();
   });
 
-  it("filters estimates and includes below-threshold models", async () => {
+  it("filters estimates and applies a custom Index threshold", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("checkbox", { name: "估算" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("22 points");
-    fireEvent.click(screen.getByRole("checkbox", { name: "显示 Luna 门槛以下" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("24 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("28 points");
+    fireEvent.change(screen.getByRole("spinbutton", { name: "最低 Intelligence Index" }), { target: { value: "0" } });
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("30 points");
   });
 
   it("opens and closes the mobile parameter drawer", () => {

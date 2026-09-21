@@ -13,8 +13,8 @@ type ControlPanelProps = {
   setSelectedEvidence: Dispatch<SetStateAction<Set<EvidenceLevel>>>;
   scenario: ComparisonScenario;
   setScenario: Dispatch<SetStateAction<ComparisonScenario>>;
-  includeBelowThreshold: boolean;
-  setIncludeBelowThreshold: (value: boolean) => void;
+  minimumIndex: number;
+  setMinimumIndex: (value: number) => void;
   onReset: () => void;
   onClose?: () => void;
 };
@@ -169,13 +169,17 @@ export function ControlPanel(props: ControlPanelProps) {
         </div>
       </section>
 
-      <section className="control-section control-section--switch">
-        <label className="switch-row">
-          <span>显示 Luna 门槛以下</span>
+      <section className="control-section control-section--index">
+        <label className="index-control">
+          <span>最低 Intelligence Index</span>
           <input
-            type="checkbox"
-            checked={props.includeBelowThreshold}
-            onChange={(event) => props.setIncludeBelowThreshold(event.target.checked)}
+            type="number"
+            aria-label="最低 Intelligence Index"
+            min="0"
+            max="100"
+            step="0.1"
+            value={props.minimumIndex}
+            onChange={(event) => props.setMinimumIndex(Math.min(100, Math.max(0, Number(event.target.value))))}
           />
         </label>
       </section>

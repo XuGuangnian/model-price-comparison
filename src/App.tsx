@@ -10,6 +10,10 @@ import { snapshotSchema, type EvidenceLevel } from "./domain/schema";
 const snapshot = snapshotSchema.parse(snapshotJson);
 const defaultScenario: ComparisonScenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 const allChannels = [...new Set(snapshot.offers.map((offer) => offer.provider))].sort();
+const lunaReference = snapshot.models.find((model) => model.id === "gpt-5-6-luna")?.benchmark;
+if (!lunaReference) throw new Error("Snapshot is missing the Luna benchmark reference");
+const defaultMinimumIndex = lunaReference.intelligenceIndex;
+const indexVersion = lunaReference.indexVersion;
 const PriceChart = lazy(() => import("./components/PriceChart").then((module) => ({ default: module.PriceChart })));
 
 function SegmentedControl<T extends string>({
@@ -52,13 +56,9 @@ export function App() {
   const [selectedEvidence, setSelectedEvidence] = useState(
     new Set<EvidenceLevel>(["official", "derived", "estimated"]),
   );
-  const [includeBelowThreshold, setIncludeBelowThreshold] = useState(false);
   const [showPareto, setShowPareto] = useState(true);
   const [controlsOpen, setControlsOpen] = useState(false);
-
-  const luna = snapshot.models.find((model) => model.id === "gpt-5-6-luna");
-  if (!luna?.benchmark) throw new Error("Snapshot is missing the Luna benchmark threshold");
-  const lunaThreshold = luna.benchmark.intelligenceIndex;
+  const [minimumIndex, setMinimumIndex] = useState(defaultMinimumIndex);
 
   const allPoints = useMemo(() => buildComparisonPoints(snapshot, scenario), [scenario]);
   const points = useMemo(
@@ -67,16 +67,16 @@ export function App() {
         const score = point.model.benchmark?.intelligenceIndex;
         return (
           score !== undefined &&
-          (includeBelowThreshold || score >= lunaThreshold) &&
+          score >= minimumIndex &&
           selectedChannels.has(point.offer.provider) &&
           selectedKinds.has(point.offer.kind) &&
           selectedEvidence.has(point.offer.evidence.level)
         );
       }),
-    [allPoints, includeBelowThreshold, lunaThreshold, selectedChannels, selectedEvidence, selectedKinds],
+    [allPoints, minimumIndex, selectedChannels, selectedEvidence, selectedKinds],
   );
   const belowThreshold = snapshot.models.filter(
-    (model) => model.benchmark && model.benchmark.intelligenceIndex < lunaThreshold,
+    (model) => model.benchmark && model.benchmark.intelligenceIndex < minimumIndex,
   );
   const unscored = snapshot.models.filter((model) => !model.benchmark);
   const visibleModels = new Set(points.map((point) => point.model.id)).size;
@@ -87,7 +87,7 @@ export function App() {
     setSelectedChannels(new Set(allChannels));
     setSelectedKinds(new Set(["api", "subscription"]));
     setSelectedEvidence(new Set(["official", "derived", "estimated"]));
-    setIncludeBelowThreshold(false);
+    setMinimumIndex(defaultMinimumIndex);
   }
 
   const controlProps = {
@@ -100,8 +100,8 @@ export function App() {
     setSelectedEvidence,
     scenario,
     setScenario,
-    includeBelowThreshold,
-    setIncludeBelowThreshold,
+    minimumIndex,
+    setMinimumIndex,
     onReset: resetControls,
   };
 
@@ -122,7 +122,7 @@ export function App() {
           <span>
             数据快照 <time dateTime={snapshot.generatedAt}>{snapshot.generatedAt.slice(0, 10)}</time>
           </span>
-          <i>AA v{luna.benchmark.indexVersion}</i>
+          <i>AA v{indexVersion}</i>
         </div>
       </header>
 
@@ -184,7 +184,7 @@ export function App() {
               currency={currency}
               usdToCny={snapshot.exchangeRate.usdToCny}
               scale={scale}
-              lunaThreshold={lunaThreshold}
+              indexThreshold={minimumIndex}
               showPareto={showPareto}
             />
           </Suspense>
@@ -211,13 +211,13 @@ export function App() {
         <section className="catalog-notes" aria-labelledby="excluded-heading">
           <div>
             <span className="eyebrow">CATALOG NOTES</span>
-            <h2 id="excluded-heading">未进入默认图表</h2>
+            <h2 id="excluded-heading">未进入当前图表</h2>
           </div>
           <div className="excluded-list">
             {belowThreshold.map((model) => (
               <div key={model.id}>
                 <strong>{model.name}</strong>
-                <span>{model.benchmark?.intelligenceIndex.toFixed(1)} · 低于 Luna {lunaThreshold.toFixed(1)}</span>
+                <span>{model.benchmark?.intelligenceIndex.toFixed(1)} · 低于当前门槛 {minimumIndex.toFixed(1)}</span>
               </div>
             ))}
             {unscored.map((model) => (

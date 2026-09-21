@@ -2,7 +2,10 @@ import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { snapshotSchema, type Offer, type Snapshot } from "../src/domain/schema";
 
-type CatalogModel = Omit<Snapshot["models"][number], "benchmark"> & { aaSlug: string };
+type CatalogModel = Omit<Snapshot["models"][number], "benchmark"> & {
+  aaSlug: string;
+  benchmark?: Snapshot["models"][number]["benchmark"];
+};
 type CatalogOffer = Offer & { verifyAaPricing?: boolean };
 type Catalog = {
   exchangeRate: Snapshot["exchangeRate"];
@@ -23,7 +26,10 @@ const snapshot = snapshotSchema.parse({
   benchmarkSource: current.benchmarkSource,
   exchangeRate: catalog.exchangeRate,
   models: catalog.models
-    .map(({ aaSlug: _aaSlug, ...model }) => ({ ...model, benchmark: benchmarkByModel.get(model.id) ?? null }))
+    .map(({ aaSlug: _aaSlug, benchmark, ...model }) => ({
+      ...model,
+      benchmark: benchmarkByModel.get(model.id) ?? benchmark ?? null,
+    }))
     .sort((left, right) => left.id.localeCompare(right.id)),
   offers: catalog.offers
     .map(({ verifyAaPricing: _verifyAaPricing, ...offer }) => offer)

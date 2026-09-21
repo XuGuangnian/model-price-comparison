@@ -7,7 +7,7 @@
 - 以每 1 亿 Token 的等效成本为横轴、Artificial Analysis Intelligence Index 为纵轴。
 - 调整输入/输出比例、缓存命中率和缓存写入率，实时更新图表与明细。
 - 订阅统一折算为月度 API 等值、优惠倍数和每 1 亿 Token 等效成本。
-- USD/CNY、线性/对数坐标、渠道、访问方式、证据等级和 Luna 门槛筛选。
+- USD/CNY、线性/对数坐标、渠道、访问方式、证据等级和可自定义最低 Index 筛选。
 - Pareto 前沿、全榜排名、成本拆分、来源日期及估算标记。
 - 桌面工作台和移动参数抽屉。
 
@@ -41,6 +41,10 @@ Token 额度计划：月 API 等值 = 参考场景 API 成本 × 月 Token 额�
 
 当前 Codex Pro 20x 的 Astra、Sol、Luna 使用 Codex Radar 的单模型周 API 等值；GLM Coding Plan 使用官方 95% 缓存命中率 Token 区间中点；其他估算值均在目录中保留来源与说明。
 
+最低 Index 默认取当前快照中 GPT-5.6 Luna 的 `37.3`，可在参数面板直接输入任意 `0–100` 数值。
+
+Codex Pro 5x 按同模型 Pro 20x 总额度的四分之一计算，月费为二分之一，因此每 1 亿 Token 等效成本固定为 Pro 20x 的两倍。没有模型级额度依据的 Terra 和 Plus 不生成订阅估算。模型是否进入图表只由当前最低 Index 决定，不因存在更新版本而排除旧模型。
+
 缓存存储时长、Batch/Fast、长上下文倍率、区域处理、搜索和工具调用费用不在当前口径内。
 
 ## 数据维护
@@ -72,7 +76,7 @@ npm run data:check
 ## 验证
 
 ```bash
-npm run check       # 数据校验、18 个单元/组件测试、类型检查、生产构建
+npm run check       # 数据校验、20 个单元/组件测试、类型检查、生产构建
 npm run test:e2e    # Chromium 桌面与移动端 E2E、Canvas 像素检查
 ```
 

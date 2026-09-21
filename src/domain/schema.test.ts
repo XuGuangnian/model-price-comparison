@@ -7,12 +7,10 @@ describe("data snapshot", () => {
     expect(() => snapshotSchema.parse(snapshotJson)).not.toThrow();
   });
 
-  it("has a scored Luna threshold and no active superseded models", () => {
+  it("has a scored Luna reference model", () => {
     const snapshot = snapshotSchema.parse(snapshotJson);
     const luna = snapshot.models.find((model) => model.id === "gpt-5-6-luna");
     expect(luna?.benchmark?.intelligenceIndex).toBeGreaterThan(0);
-    const ids = new Set(snapshot.models.map((model) => model.id));
-    expect(snapshot.models.flatMap((model) => model.supersedes).some((id) => ids.has(id))).toBe(false);
   });
 
   it("keeps source metadata on every offer", () => {

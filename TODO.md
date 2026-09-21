@@ -14,4 +14,4 @@
   - claude api和订阅
   - Muse Spark 1.3
   - gemini 3.8
-  - 低于gpt-5.6-luna的aa分数就不用计入了，如果有最新版，就不用统计老版的，比如gpt-5.5
+  - 通过可自定义的 Artificial Analysis Index 基准值筛选；不因存在新版而排除达到基准值的旧模型

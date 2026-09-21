@@ -2,7 +2,10 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { snapshotSchema, type ApiOffer, type Offer, type Snapshot } from "../src/domain/schema";
 
-type CatalogModel = Omit<Snapshot["models"][number], "benchmark"> & { aaSlug: string };
+type CatalogModel = Omit<Snapshot["models"][number], "benchmark"> & {
+  aaSlug: string;
+  benchmark?: Snapshot["models"][number]["benchmark"];
+};
 type CatalogOffer = Offer & { verifyAaPricing?: boolean };
 type Catalog = {
   exchangeRate: Snapshot["exchangeRate"];
@@ -65,10 +68,10 @@ for (const score of scores) {
   if (!scoreRank.has(score)) scoreRank.set(score, scores.findIndex((candidate) => candidate === score) + 1);
 }
 
-const models = catalog.models.map(({ aaSlug, ...model }) => {
+const models = catalog.models.map(({ aaSlug, benchmark: catalogBenchmark, ...model }) => {
   const aaModel = aaModels.find((candidate) => candidate.slug === aaSlug);
   if (!aaModel) {
-    return { ...model, benchmark: null };
+    return { ...model, benchmark: catalogBenchmark ?? null };
   }
   const score = aaModel.evaluations.artificial_analysis_intelligence_index;
   return {

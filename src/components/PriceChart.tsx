@@ -45,7 +45,7 @@ type PriceChartProps = {
   currency: "USD" | "CNY";
   usdToCny: number;
   scale: "linear" | "log";
-  lunaThreshold: number;
+  indexThreshold: number;
   showPareto: boolean;
 };
 
@@ -112,13 +112,13 @@ export function PriceChart(props: PriceChartProps) {
               symbol: ["none", "none"],
               lineStyle: { color: "#b1a99b", type: "dashed", width: 1 },
               label: {
-                formatter: `Luna 门槛  ${props.lunaThreshold}`,
+                formatter: `Index 门槛  ${props.indexThreshold.toFixed(1)}`,
                 color: "#6f6a62",
                 fontFamily: "IBM Plex Mono",
                 fontSize: 10,
                 position: "insideEndTop",
               },
-              data: [{ yAxis: props.lunaThreshold }],
+              data: [{ yAxis: props.indexThreshold }],
             }
           : undefined,
     }));

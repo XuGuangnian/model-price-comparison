@@ -26,7 +26,7 @@ test("desktop comparison workflow", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "模型价格图谱" })).toBeVisible();
-  await expect(page.getByText("10 模型")).toBeVisible();
+  await expect(page.getByText("13 模型")).toBeVisible();
   await expect(page.getByRole("slider").nth(0)).toHaveValue("90");
   await expect(page.getByRole("slider").nth(1)).toHaveValue("95");
   await expectNonBlankChart(page);
@@ -36,9 +36,10 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(page.getByText("订阅按月度 API 等值自动折算")).toBeVisible();
   await expect(page.locator("td.cost-cell").filter({ hasText: "¥" }).first()).toBeVisible();
 
-  await page.getByRole("checkbox", { name: "显示 Luna 门槛以下" }).check();
-  await expect(page.getByText("11 模型")).toBeVisible();
-  await expect(page.getByText("37 方案")).toBeVisible();
+  await page.getByRole("spinbutton", { name: "最低 Intelligence Index" }).fill("0");
+  await expect(page.getByText("14 模型")).toBeVisible();
+  await expect(page.getByText("34 方案")).toBeVisible();
+  await expect(page.getByRole("row").filter({ hasText: "GPT-5.6 Terra" })).toHaveCount(1);
 });
 
 test("mobile drawer and responsive chart", async ({ page }) => {
