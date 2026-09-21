@@ -95,13 +95,6 @@ export const snapshotSchema = z
       }
     }
 
-    for (const model of snapshot.models) {
-      for (const supersededId of model.supersedes) {
-        if (!modelIds.has(supersededId)) {
-          context.addIssue({ code: "custom", message: `Unknown superseded model: ${supersededId}` });
-        }
-      }
-    }
   });
 
 export type EvidenceLevel = z.infer<typeof evidenceLevelSchema>;

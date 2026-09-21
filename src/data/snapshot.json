@@ -1,0 +1,856 @@
+{
+  "generatedAt": "2026-09-21T06:20:32.407Z",
+  "benchmarkSource": "https://artificialanalysis.ai/api/v2/language/models/free",
+  "exchangeRate": {
+    "usdToCny": 6.7487,
+    "asOf": "2026-09-21",
+    "sourceUrl": "https://www.fxstreet.com/news/pboc-sets-usd-cny-reference-rate-at-67487-vs-67521-previous-202609210115"
+  },
+  "models": [
+    {
+      "id": "claude-fable-5-1",
+      "name": "Claude Fable 5.1",
+      "provider": "Anthropic",
+      "family": "Claude",
+      "version": "Fable 5.1 · max",
+      "releaseDate": "2026-09-01",
+      "supersedes": [
+        "claude-fable-5"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "3e87c73e-a257-495e-9730-367a66229811",
+        "intelligenceIndex": 53.4,
+        "globalRank": 1,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "deepseek-v4-1-flash",
+      "name": "DeepSeek V4.1 Flash",
+      "provider": "DeepSeek",
+      "family": "DeepSeek V4",
+      "version": "V4.1 Flash · max",
+      "releaseDate": "2026-09-10",
+      "supersedes": [
+        "deepseek-v4-flash"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "dbe7c625-3100-4463-b479-a228c41f75dd",
+        "intelligenceIndex": 39.5,
+        "globalRank": 39,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro 0813",
+      "provider": "DeepSeek",
+      "family": "DeepSeek V4 Pro",
+      "version": "V4 Pro 0813 · max",
+      "releaseDate": "2026-08-13",
+      "supersedes": [
+        "deepseek-v4-pro-0424"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "83173329-c09a-41f1-a028-a282a5f908d7",
+        "intelligenceIndex": 36,
+        "globalRank": 51,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "gemini-3-8-flash",
+      "name": "Gemini 3.8 Flash",
+      "provider": "Google",
+      "family": "Gemini",
+      "version": "3.8 Flash · high",
+      "releaseDate": "2026-09-02",
+      "supersedes": [
+        "gemini-3-7-flash"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "8a999846-4c1d-4ce7-a8b7-1310a7166fd7",
+        "intelligenceIndex": 40.9,
+        "globalRank": 31,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "glm-5-3",
+      "name": "GLM-5.3",
+      "provider": "Z AI",
+      "family": "GLM",
+      "version": "5.3 · max",
+      "releaseDate": "2026-08-18",
+      "supersedes": [
+        "glm-5-2"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "cd684ea4-b475-4269-b001-d469d06d8a7a",
+        "intelligenceIndex": 44.8,
+        "globalRank": 19,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "gpt-5-6-luna",
+      "name": "GPT-5.6 Luna",
+      "provider": "OpenAI",
+      "family": "GPT-5.6",
+      "version": "5.6 Luna · max",
+      "releaseDate": "2026-07-09",
+      "supersedes": [
+        "gpt-5-5"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "426d24c8-49ae-482a-b4a8-20f1c53f21c1",
+        "intelligenceIndex": 37.3,
+        "globalRank": 48,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.406Z"
+      }
+    },
+    {
+      "id": "gpt-5-6-sol",
+      "name": "GPT-5.6 Sol",
+      "provider": "OpenAI",
+      "family": "GPT-5.6",
+      "version": "5.6 Sol · max",
+      "releaseDate": "2026-07-09",
+      "supersedes": [
+        "gpt-5-5"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "d93edfe8-bf35-49ad-b56e-b18116142a1c",
+        "intelligenceIndex": 47,
+        "globalRank": 14,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "gpt-5-6-terra",
+      "name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "family": "GPT-5.6",
+      "version": "5.6 Terra · max",
+      "releaseDate": "2026-07-09",
+      "supersedes": [
+        "gpt-5-4-mini"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "bcf8db0a-3bb6-4d82-9516-0f57370c85a6",
+        "intelligenceIndex": 42.1,
+        "globalRank": 28,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "provider": "OpenAI",
+      "family": "GPT-6",
+      "version": "6 Astra · max",
+      "releaseDate": "2026-09-03",
+      "supersedes": [],
+      "benchmark": {
+        "artificialAnalysisId": "2f339a97-9a0d-499a-9cb5-e0db665bfa25",
+        "intelligenceIndex": 52.7,
+        "globalRank": 3,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "grok-4-6",
+      "name": "Grok 4.6",
+      "provider": "SpaceXAI",
+      "family": "Grok",
+      "version": "4.6 · high",
+      "releaseDate": "2026-08-12",
+      "supersedes": [
+        "grok-4-5"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "c8adc5cf-fd5a-407b-af51-dc3bede3e49c",
+        "intelligenceIndex": 44.3,
+        "globalRank": 21,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    },
+    {
+      "id": "muse-spark-1-3",
+      "name": "Muse Spark 1.3",
+      "provider": "Meta",
+      "family": "Muse Spark",
+      "version": "1.3 · max",
+      "releaseDate": "2026-09-02",
+      "supersedes": [
+        "muse-spark-1-2"
+      ],
+      "benchmark": {
+        "artificialAnalysisId": "9999672c-b687-4026-9c15-5cef02ff53bb",
+        "intelligenceIndex": 48.1,
+        "globalRank": 12,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-21T06:20:32.407Z"
+      }
+    }
+  ],
+  "offers": [
+    {
+      "id": "anthropic-api-fable",
+      "modelId": "claude-fable-5-1",
+      "provider": "Anthropic",
+      "label": "Anthropic API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://claude.com/pricing",
+        "asOf": "2026-09-21",
+        "note": "5 分钟缓存 TTL 的标准价格。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 10,
+        "cacheReadUsdPerMillion": 0.25,
+        "cacheWriteUsdPerMillion": 12.5,
+        "outputUsdPerMillion": 50
+      }
+    },
+    {
+      "id": "chatgpt-plus-astra",
+      "modelId": "gpt-6-astra",
+      "provider": "OpenAI",
+      "label": "ChatGPT Plus",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/20001354-gpt-56-and-gpt-6-pro-in-chatgpt",
+        "asOf": "2026-09-21",
+        "note": "Plus 可用 Astra；模型倍数和额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 20,
+      "valueMultiplier": 1,
+      "monthlyTokenQuota": 1500000
+    },
+    {
+      "id": "chatgpt-plus-luna",
+      "modelId": "gpt-5-6-luna",
+      "provider": "OpenAI",
+      "label": "ChatGPT Plus",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://openai.com/index/introducing-chatgpt-go/",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；模型倍数和 Token 额度为工作负载估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 20,
+      "valueMultiplier": 1.5,
+      "monthlyTokenQuota": 90000000
+    },
+    {
+      "id": "chatgpt-plus-sol",
+      "modelId": "gpt-5-6-sol",
+      "provider": "OpenAI",
+      "label": "ChatGPT Plus",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://openai.com/index/introducing-chatgpt-go/",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；模型倍数和 Token 额度为工作负载估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 20,
+      "valueMultiplier": 1.25,
+      "monthlyTokenQuota": 4500000
+    },
+    {
+      "id": "chatgpt-plus-terra",
+      "modelId": "gpt-5-6-terra",
+      "provider": "OpenAI",
+      "label": "ChatGPT Plus",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://openai.com/index/introducing-chatgpt-go/",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；模型倍数和 Token 额度为工作负载估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 20,
+      "valueMultiplier": 2,
+      "monthlyTokenQuota": 12000000
+    },
+    {
+      "id": "chatgpt-pro20-astra",
+      "modelId": "gpt-6-astra",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 20x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 200,
+      "valueMultiplier": 5,
+      "monthlyTokenQuota": 70000000
+    },
+    {
+      "id": "chatgpt-pro20-luna",
+      "modelId": "gpt-5-6-luna",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 20x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；新订阅目前暂停，额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 200,
+      "valueMultiplier": 6,
+      "monthlyTokenQuota": 1200000000
+    },
+    {
+      "id": "chatgpt-pro20-sol",
+      "modelId": "gpt-5-6-sol",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 20x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 200,
+      "valueMultiplier": 7,
+      "monthlyTokenQuota": 140000000
+    },
+    {
+      "id": "chatgpt-pro20-terra",
+      "modelId": "gpt-5-6-terra",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 20x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 200,
+      "valueMultiplier": 8,
+      "monthlyTokenQuota": 250000000
+    },
+    {
+      "id": "chatgpt-pro5-astra",
+      "modelId": "gpt-6-astra",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 5x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/20001354-gpt-56-and-gpt-6-pro-in-chatgpt",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 100,
+      "valueMultiplier": 2.5,
+      "monthlyTokenQuota": 18000000
+    },
+    {
+      "id": "chatgpt-pro5-luna",
+      "modelId": "gpt-5-6-luna",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 5x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；不同模型额度会随产品限制变化。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 100,
+      "valueMultiplier": 3,
+      "monthlyTokenQuota": 450000000
+    },
+    {
+      "id": "chatgpt-pro5-sol",
+      "modelId": "gpt-5-6-sol",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 5x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 100,
+      "valueMultiplier": 3.5,
+      "monthlyTokenQuota": 40000000
+    },
+    {
+      "id": "chatgpt-pro5-terra",
+      "modelId": "gpt-5-6-terra",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 5x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "asOf": "2026-09-21",
+        "note": "月费为官方值；额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 100,
+      "valueMultiplier": 4,
+      "monthlyTokenQuota": 70000000
+    },
+    {
+      "id": "claude-max20",
+      "modelId": "claude-fable-5-1",
+      "provider": "Anthropic",
+      "label": "Claude Max 20x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://support.claude.com/en/articles/11049741-what-is-the-max-plan",
+        "asOf": "2026-09-21",
+        "note": "月费和相对用量官方公布；API 价值倍数及 Token 额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 200,
+      "valueMultiplier": 3,
+      "monthlyTokenQuota": 42000000
+    },
+    {
+      "id": "claude-max5",
+      "modelId": "claude-fable-5-1",
+      "provider": "Anthropic",
+      "label": "Claude Max 5x",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://support.claude.com/en/articles/11049741-what-is-the-max-plan",
+        "asOf": "2026-09-21",
+        "note": "月费和相对用量官方公布；API 价值倍数及 Token 额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 100,
+      "valueMultiplier": 1.5,
+      "monthlyTokenQuota": 12000000
+    },
+    {
+      "id": "claude-pro",
+      "modelId": "claude-fable-5-1",
+      "provider": "Anthropic",
+      "label": "Claude Pro",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://claude.com/pricing",
+        "asOf": "2026-09-21",
+        "note": "月费官方公布；Fable 仅可使用额外 usage credits，固定额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 20,
+      "valueMultiplier": 1,
+      "monthlyTokenQuota": 2000000
+    },
+    {
+      "id": "command-goat-deepseek",
+      "modelId": "deepseek-v4-1-flash",
+      "provider": "Command Code",
+      "label": "GOAT Plan",
+      "evidence": {
+        "level": "derived",
+        "sourceUrl": "https://commandcode.ai/docs/plans/goat",
+        "asOf": "2026-09-21",
+        "note": "官方说明 $10 可获得最多 $70 模型额度；Token 额度按 98% 缓存命中估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 10,
+      "valueMultiplier": 7,
+      "monthlyTokenQuota": 3500000000
+    },
+    {
+      "id": "command-goat-gemini",
+      "modelId": "gemini-3-8-flash",
+      "provider": "Command Code",
+      "label": "GOAT Plan",
+      "evidence": {
+        "level": "derived",
+        "sourceUrl": "https://commandcode.ai/docs/plans/goat",
+        "asOf": "2026-09-21",
+        "note": "官方计划总价值倍数；具体模型 Token 额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 10,
+      "valueMultiplier": 7,
+      "monthlyTokenQuota": 240000000
+    },
+    {
+      "id": "command-goat-muse",
+      "modelId": "muse-spark-1-3",
+      "provider": "Command Code",
+      "label": "GOAT Plan",
+      "evidence": {
+        "level": "derived",
+        "sourceUrl": "https://commandcode.ai/docs/plans/goat",
+        "asOf": "2026-09-21",
+        "note": "官方计划总价值倍数；具体模型 Token 额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 10,
+      "valueMultiplier": 7,
+      "monthlyTokenQuota": 420000000
+    },
+    {
+      "id": "deepseek-api-flash-offpeak",
+      "modelId": "deepseek-v4-1-flash",
+      "provider": "DeepSeek",
+      "label": "DeepSeek API · 低峰",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+        "asOf": "2026-09-21",
+        "note": "低峰价格；周末和中国法定节假日全天适用。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 0.15,
+        "cacheReadUsdPerMillion": 0.003,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 0.6
+      }
+    },
+    {
+      "id": "deepseek-api-flash-peak",
+      "modelId": "deepseek-v4-1-flash",
+      "provider": "DeepSeek",
+      "label": "DeepSeek API · 高峰",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+        "asOf": "2026-09-21",
+        "note": "工作日 01:00–04:00、06:00–10:00 UTC。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 0.3,
+        "cacheReadUsdPerMillion": 0.006,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 1.2
+      }
+    },
+    {
+      "id": "deepseek-api-pro-offpeak",
+      "modelId": "deepseek-v4-pro",
+      "provider": "DeepSeek",
+      "label": "DeepSeek API · 低峰",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+        "asOf": "2026-09-21",
+        "note": "低峰价格；该模型评分低于 Luna 门槛。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 0.66,
+        "cacheReadUsdPerMillion": 0.022,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 1.98
+      }
+    },
+    {
+      "id": "deepseek-api-pro-peak",
+      "modelId": "deepseek-v4-pro",
+      "provider": "DeepSeek",
+      "label": "DeepSeek API · 高峰",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://api-docs.deepseek.com/quick_start/pricing/",
+        "asOf": "2026-09-21",
+        "note": "工作日高峰价格。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 1.32,
+        "cacheReadUsdPerMillion": 0.044,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 3.96
+      }
+    },
+    {
+      "id": "glm-plan-lite",
+      "modelId": "glm-5-3",
+      "provider": "Z AI",
+      "label": "GLM Coding Lite",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://zcode.z.ai/en",
+        "asOf": "2026-09-21",
+        "note": "月费和周积分官方公布；Token 额度与价值倍数为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 18,
+      "valueMultiplier": 1,
+      "monthlyTokenQuota": 15000000
+    },
+    {
+      "id": "glm-plan-max",
+      "modelId": "glm-5-3",
+      "provider": "Z AI",
+      "label": "GLM Coding Max",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://zcode.z.ai/en",
+        "asOf": "2026-09-21",
+        "note": "官方标称 14 倍 Lite 用量；折算倍数和 Token 额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 168,
+      "valueMultiplier": 1.5,
+      "monthlyTokenQuota": 210000000
+    },
+    {
+      "id": "glm-plan-pro",
+      "modelId": "glm-5-3",
+      "provider": "Z AI",
+      "label": "GLM Coding Pro",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://zcode.z.ai/en",
+        "asOf": "2026-09-21",
+        "note": "官方标称 6 倍 Lite 用量；折算倍数和 Token 额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 80,
+      "valueMultiplier": 1.35,
+      "monthlyTokenQuota": 90000000
+    },
+    {
+      "id": "google-api-gemini",
+      "modelId": "gemini-3-8-flash",
+      "provider": "Google",
+      "label": "Gemini Developer API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://ai.google.dev/gemini-api/docs/pricing",
+        "asOf": "2026-09-21",
+        "note": "2026 年 12 月 31 日前标准价格；不含缓存存储费。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 0.75,
+        "cacheReadUsdPerMillion": 0.075,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 3.75
+      }
+    },
+    {
+      "id": "grok-super",
+      "modelId": "grok-4-6",
+      "provider": "SpaceXAI",
+      "label": "SuperGrok",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://x.ai/pricing",
+        "asOf": "2026-09-21",
+        "note": "月费官方公布，但没有固定 Token 数；倍数与额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 30,
+      "valueMultiplier": 2,
+      "monthlyTokenQuota": 30000000
+    },
+    {
+      "id": "grok-super-plus",
+      "modelId": "grok-4-6",
+      "provider": "SpaceXAI",
+      "label": "SuperGrok Plus",
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://x.ai/pricing",
+        "asOf": "2026-09-21",
+        "note": "月费官方公布，但没有固定 Token 数；倍数与额度为估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 100,
+      "valueMultiplier": 3,
+      "monthlyTokenQuota": 100000000
+    },
+    {
+      "id": "meta-api-muse",
+      "modelId": "muse-spark-1-3",
+      "provider": "Meta",
+      "label": "Meta Model API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://dev.meta.ai/docs/pricing-rate-limits",
+        "asOf": "2026-09-21",
+        "note": "Standard tier，不使用提示和输出训练模型。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 1.25,
+        "cacheReadUsdPerMillion": 0.15,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 4.25
+      }
+    },
+    {
+      "id": "openai-api-astra",
+      "modelId": "gpt-6-astra",
+      "provider": "OpenAI",
+      "label": "OpenAI API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://developers.openai.com/api/docs/models/compare",
+        "asOf": "2026-09-21",
+        "note": "标准文本价格。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 10,
+        "cacheReadUsdPerMillion": 1,
+        "cacheWriteUsdPerMillion": 12.5,
+        "outputUsdPerMillion": 50
+      }
+    },
+    {
+      "id": "openai-api-luna",
+      "modelId": "gpt-5-6-luna",
+      "provider": "OpenAI",
+      "label": "OpenAI API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+        "asOf": "2026-09-21",
+        "note": "标准文本价格；缓存写入按普通输入价的 1.25 倍。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 0.2,
+        "cacheReadUsdPerMillion": 0.02,
+        "cacheWriteUsdPerMillion": 0.25,
+        "outputUsdPerMillion": 1.2
+      }
+    },
+    {
+      "id": "openai-api-sol",
+      "modelId": "gpt-5-6-sol",
+      "provider": "OpenAI",
+      "label": "OpenAI API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://developers.openai.com/api/docs/models/compare",
+        "asOf": "2026-09-21",
+        "note": "标准文本价格；不含 Fast、Batch 和长上下文加价。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 4,
+        "cacheReadUsdPerMillion": 0.4,
+        "cacheWriteUsdPerMillion": 5,
+        "outputUsdPerMillion": 20
+      }
+    },
+    {
+      "id": "openai-api-terra",
+      "modelId": "gpt-5-6-terra",
+      "provider": "OpenAI",
+      "label": "OpenAI API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+        "asOf": "2026-09-21",
+        "note": "标准文本价格；不含长上下文加价。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 2,
+        "cacheReadUsdPerMillion": 0.2,
+        "cacheWriteUsdPerMillion": 2.5,
+        "outputUsdPerMillion": 12
+      }
+    },
+    {
+      "id": "opencode-go-deepseek",
+      "modelId": "deepseek-v4-1-flash",
+      "provider": "OpenCode",
+      "label": "OpenCode Go",
+      "evidence": {
+        "level": "derived",
+        "sourceUrl": "https://dev.opencode.ai/go",
+        "asOf": "2026-09-21",
+        "note": "官方限时月度用量为 $60；Token 额度按高缓存工作负载估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 10,
+      "valueMultiplier": 6,
+      "monthlyTokenQuota": 3000000000
+    },
+    {
+      "id": "opencode-go-luna",
+      "modelId": "gpt-5-6-luna",
+      "provider": "OpenCode",
+      "label": "OpenCode Go",
+      "evidence": {
+        "level": "derived",
+        "sourceUrl": "https://dev.opencode.ai/go",
+        "asOf": "2026-09-21",
+        "note": "官方列出 $10 月费和 Luna $15 月度用量；Token 额度按高缓存工作负载估算。"
+      },
+      "kind": "subscription",
+      "monthlyFeeUsd": 10,
+      "valueMultiplier": 1.5,
+      "monthlyTokenQuota": 300000000
+    },
+    {
+      "id": "xai-api-grok",
+      "modelId": "grok-4-6",
+      "provider": "SpaceXAI",
+      "label": "SpaceXAI API",
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://docs.x.ai/developers/models/grok-4.6",
+        "asOf": "2026-09-21",
+        "note": "短上下文标准价格；不含区域和优先处理加价。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 2,
+        "cacheReadUsdPerMillion": 0.5,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 6
+      }
+    },
+    {
+      "id": "zai-api-glm",
+      "modelId": "glm-5-3",
+      "provider": "Z AI",
+      "label": "Z AI API",
+      "evidence": {
+        "level": "derived",
+        "sourceUrl": "https://artificialanalysis.ai/models/glm-5-3",
+        "asOf": "2026-09-21",
+        "note": "AA 记录的 Z AI 首方价格；缓存写入未单列。"
+      },
+      "kind": "api",
+      "pricing": {
+        "inputUsdPerMillion": 1.4,
+        "cacheReadUsdPerMillion": 0.26,
+        "cacheWriteUsdPerMillion": null,
+        "outputUsdPerMillion": 4.4
+      }
+    }
+  ]
+}
