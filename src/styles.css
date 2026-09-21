@@ -1,0 +1,13 @@
+:root {
+  color: #141714;
+  background: #f4f1e8;
+  font-family: Georgia, "Noto Serif SC", serif;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  padding: 2rem;
+}

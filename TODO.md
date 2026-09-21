@@ -1,0 +1,17 @@
+## 本项目是为了比较各大主流模型（包括订阅）价格对比
+- 模型价格包含输入、缓存输入、缓存写入、输出价格4种，其中缓存写入是可选的
+- 以1亿Tokens花费的价格作为最终的比对对象
+- 影响价格的因素有缓存命中率，输入输出比等，如果有缓存写入价格也要加上比例，以这几个条件可以自动调节结果
+- 以图表展示，横坐标为价格，纵坐标为artificial analysis 排名
+- 如果是订阅，有两种映射价格的方法，如chatgpt 订阅，直接通过按api计费的总价值/订阅费就是倍数，不同模型倍数也不一样；另一种是以一种估算的缓存命中的总额度固定，通过总额度与缓存命中率 api价格估算价格曲线
+- 模型包含：
+  - gpt api和订阅gpt-5.6-luna,gpt-5.6-terra,gpt-5.6-sol,gpt-6-astra(apiplus/pro 5x/pro 20x)
+  - deepseek api:deepseek-v4.1-flash,deepseek-v4-pro
+  - opencode go
+  - command code goat plan
+  - glm api和订阅
+  - grok api和订阅
+  - claude api和订阅
+  - Muse Spark 1.3
+  - gemini 3.8
+  - 低于gpt-5.6-luna的aa分数就不用计入了，如果有最新版，就不用统计老版的，比如gpt-5.5
