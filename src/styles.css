@@ -92,7 +92,14 @@ h2 { margin-top: 3px; font-size: 24px; line-height: 1.05; }
 .dot--api { border-radius: 50%; background: var(--ink); }
 .dot--subscription { transform: rotate(45deg); background: var(--ink); }
 .dot--estimate { transform: rotate(45deg); background: transparent; }
-.price-chart { width: 100%; height: 550px; min-height: 480px; }
+.price-chart { width: 100%; height: 550px; min-height: 480px; display: flex; flex-direction: column; }
+.channel-legend { min-height: 36px; padding: 3px 8px 7px; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; border-bottom: 1px solid var(--line-light); }
+.channel-legend button { min-height: 27px; padding: 3px 7px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent; border-radius: 3px; color: #555b55; background: transparent; cursor: pointer; font-size: 11px; transition: opacity 140ms ease, border-color 140ms ease, background-color 140ms ease; }
+.channel-legend button:hover, .channel-legend button:focus-visible, .channel-legend button.is-active { color: var(--ink); border-color: #aaa59a; background: var(--paper-deep); }
+.channel-legend button.is-active { box-shadow: inset 0 -2px 0 var(--teal); }
+.channel-legend button.is-dimmed { opacity: 0.38; }
+.channel-swatch { width: 9px; height: 9px; flex: 0 0 9px; border-radius: 50%; }
+.price-chart-canvas { width: 100%; min-height: 0; flex: 1 1 auto; }
 .chart-loading { display: grid; place-items: center; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 11px; }
 .chart-footnote { min-height: 35px; padding: 8px 4px 0; display: flex; align-items: flex-start; gap: 7px; color: #6b716b; border-top: 1px solid var(--line-light); font-size: 10px; }
 .chart-footnote span:last-child { margin-left: auto; font-family: "IBM Plex Mono", monospace; white-space: nowrap; }
@@ -193,6 +200,8 @@ footer a { color: #72d5ce; }
   .stage-metrics span { padding-left: 8px; }
   .stage-metrics span:last-child { display: none; }
   .price-chart { height: 500px; min-height: 500px; }
+  .channel-legend { padding-inline: 5px; gap: 2px 3px; }
+  .channel-legend button { min-height: 24px; padding: 2px 5px; font-size: 9px; }
   .chart-key { padding-right: 8px; }
   .chart-footnote { margin-inline: 8px; flex-wrap: wrap; }
   .chart-footnote span:first-of-type { max-width: calc(100% - 24px); }

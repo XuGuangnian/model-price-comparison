@@ -31,6 +31,19 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(page.getByRole("slider").nth(1)).toHaveValue("95");
   await expectNonBlankChart(page);
 
+  const openCodeChannel = page.getByRole("button", { name: "高亮 OpenCode 渠道" });
+  const commandCodeChannel = page.getByRole("button", { name: "高亮 Command Code 渠道" });
+  const openAiChannel = page.getByRole("button", { name: "高亮 OpenAI 渠道" });
+  await expect(openCodeChannel).toBeVisible();
+  await expect(commandCodeChannel).toBeVisible();
+  await openCodeChannel.hover();
+  await expect(openCodeChannel).toHaveClass(/is-active/);
+  await expect(openAiChannel).toHaveClass(/is-dimmed/);
+  await openCodeChannel.click();
+  await page.mouse.move(1300, 820);
+  await expect(openCodeChannel).toHaveAttribute("aria-pressed", "true");
+  await expect(openCodeChannel).toHaveClass(/is-active/);
+
   await page.getByRole("button", { name: "CNY" }).click();
   await expect(page.getByRole("button", { name: "CNY" })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByText("订阅按月度 API 等值自动折算")).toBeVisible();
@@ -46,6 +59,7 @@ test("mobile drawer and responsive chart", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expectNonBlankChart(page);
+  await expect(page.getByRole("group", { name: "渠道高亮" })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 
   await page.getByRole("button", { name: "参数" }).click();

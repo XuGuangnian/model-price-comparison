@@ -2,7 +2,6 @@ import { LineChart, ScatterChart } from "echarts/charts";
 import {
   AriaComponent,
   GridComponent,
-  LegendComponent,
   MarkLineComponent,
   TooltipComponent,
 } from "echarts/components";
@@ -18,7 +17,6 @@ use([
   ScatterChart,
   LineChart,
   GridComponent,
-  LegendComponent,
   TooltipComponent,
   MarkLineComponent,
   AriaComponent,
@@ -34,7 +32,21 @@ const providerColors: Record<string, string> = {
   Anthropic: "#d06b3c",
   Meta: "#128c91",
   Google: "#d79c12",
+  OpenCode: "#7656d6",
+  "Command Code": "#ae4f83",
 };
+
+const channelOrder = [
+  "OpenAI",
+  "Anthropic",
+  "DeepSeek",
+  "Google",
+  "Meta",
+  "Z AI",
+  "SpaceXAI",
+  "OpenCode",
+  "Command Code",
+];
 
 function escapeHtml(value: string) {
   return value.replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[character] as string);
@@ -53,7 +65,17 @@ export function PriceChart(props: PriceChartProps) {
   const chartElement = useRef<HTMLDivElement>(null);
   const chart = useRef<EChartsType | null>(null);
   const [compact, setCompact] = useState(false);
+  const [selectedChannel, setSelectedChannel] = useState<string | null>(null);
+  const [hoveredChannel, setHoveredChannel] = useState<string | null>(null);
   const paretoIds = useMemo(() => getParetoPointIds(props.points), [props.points]);
+  const channels = useMemo(() => {
+    const available = new Set(props.points.map((point) => point.offer.provider));
+    return [
+      ...channelOrder.filter((channel) => available.has(channel)),
+      ...[...available].filter((channel) => !channelOrder.includes(channel)).sort(),
+    ];
+  }, [props.points]);
+  const activeChannel = hoveredChannel ?? selectedChannel;
 
   useEffect(() => {
     if (!chartElement.current) return;
@@ -63,23 +85,28 @@ export function PriceChart(props: PriceChartProps) {
       currency: props.currency,
       maximumFractionDigits: 1,
     });
-    const providers = [...new Set(props.points.map((point) => point.model.provider))];
     const labeledModels = new Set<string>();
 
-    const series: SeriesOption[] = providers.map((provider, providerIndex) => ({
-      name: provider,
+    const series: SeriesOption[] = channels.map((channel, channelIndex) => ({
+      name: channel,
       type: "scatter" as const,
       symbolSize: 15,
       z: 4,
-      itemStyle: { color: providerColors[provider] ?? "#6b706b", borderColor: "#f4f1e8", borderWidth: 2 },
+      itemStyle: {
+        color: providerColors[channel] ?? "#6b706b",
+        borderColor: "#f4f1e8",
+        borderWidth: 2,
+        opacity: activeChannel && activeChannel !== channel ? 0.14 : 1,
+      },
+      emphasis: { focus: "series", scale: 1.45, itemStyle: { opacity: 1, shadowBlur: 10 } },
       labelLayout: { hideOverlap: true, moveOverlap: "shiftY" as const },
       data: props.points
-        .filter((point) => point.model.provider === provider)
+        .filter((point) => point.offer.provider === channel)
         .map((point) => {
           const shouldLabel =
             !compact &&
-            point.offer.kind === "api" &&
-            (point.model.benchmark?.intelligenceIndex ?? 0) >= 44 &&
+            (activeChannel === channel ||
+              (!activeChannel && point.offer.kind === "api" && (point.model.benchmark?.intelligenceIndex ?? 0) >= 44)) &&
             !labeledModels.has(point.model.id);
           if (shouldLabel) labeledModels.add(point.model.id);
           const isEstimate = point.offer.evidence.level === "estimated";
@@ -97,7 +124,7 @@ export function PriceChart(props: PriceChartProps) {
             label: {
               show: shouldLabel,
               formatter: point.model.name.replace("GPT-5.6 ", "5.6 ").replace("DeepSeek ", "DS "),
-              position: providerIndex % 2 === 0 ? "top" : "bottom",
+              position: channelIndex % 2 === 0 ? "top" : "bottom",
               color: "#343934",
               fontFamily: "IBM Plex Mono",
               fontSize: 10,
@@ -106,7 +133,7 @@ export function PriceChart(props: PriceChartProps) {
           };
         }),
       markLine:
-        providerIndex === 0
+        channelIndex === 0
           ? {
               silent: true,
               symbol: ["none", "none"],
@@ -142,7 +169,7 @@ export function PriceChart(props: PriceChartProps) {
           itemStyle: { color: "#00a6a6" },
           label: { show: false },
         })),
-        lineStyle: { color: "#00a6a6", width: 2, type: "dashed" },
+        lineStyle: { color: "#00a6a6", width: 2, type: "dashed", opacity: activeChannel ? 0.22 : 1 },
         tooltip: { show: false },
       });
     }
@@ -152,16 +179,7 @@ export function PriceChart(props: PriceChartProps) {
         animationDuration: 480,
         animationEasing: "cubicOut",
         aria: { enabled: true, decal: { show: true } },
-        grid: { left: 64, right: 32, top: 76, bottom: 66, containLabel: false },
-        legend: {
-          top: 8,
-          left: 8,
-          itemWidth: 10,
-          itemHeight: 10,
-          textStyle: { color: "#5e625e", fontFamily: "IBM Plex Sans", fontSize: 11 },
-          selectedMode: false,
-          data: providers,
-        },
+        grid: { left: 64, right: 32, top: 24, bottom: 66, containLabel: false },
         tooltip: {
           trigger: "item",
           confine: true,
@@ -199,7 +217,7 @@ export function PriceChart(props: PriceChartProps) {
                   )} · ${formatter.format(convertUsd(point.apiCost.cachedInputCost, props.currency, props.usdToCny))} · ${formatter.format(
                     convertUsd(point.apiCost.cacheWriteCost, props.currency, props.usdToCny),
                   )} · ${formatter.format(convertUsd(point.apiCost.outputCost, props.currency, props.usdToCny))}</b></div>`;
-            return `<div class="chart-tip"><div class="chart-tip__head"><span>${escapeHtml(point.model.provider)}</span><em>${evidence}</em></div><strong>${escapeHtml(
+            return `<div class="chart-tip"><div class="chart-tip__head"><span>${escapeHtml(point.model.provider)} · ${escapeHtml(point.offer.provider)}</span><em>${evidence}</em></div><strong>${escapeHtml(
               point.model.name,
             )}</strong><small>${escapeHtml(point.offer.label)}</small><div class="chart-tip__price">${formatter.format(
               convertUsd(point.costUsd, props.currency, props.usdToCny),
@@ -257,7 +275,7 @@ export function PriceChart(props: PriceChartProps) {
     });
     observer.observe(chartElement.current);
     return () => observer.disconnect();
-  }, [compact, paretoIds, props]);
+  }, [activeChannel, channels, compact, paretoIds, props]);
 
   useEffect(
     () => () => {
@@ -267,5 +285,33 @@ export function PriceChart(props: PriceChartProps) {
     [],
   );
 
-  return <div ref={chartElement} className="price-chart" role="img" aria-label="模型能力与每 1 亿 Token 等效成本散点图" />;
+  return (
+    <div className="price-chart">
+      <div className="channel-legend" role="group" aria-label="渠道高亮">
+        {channels.map((channel) => (
+          <button
+            type="button"
+            key={channel}
+            className={activeChannel === channel ? "is-active" : activeChannel ? "is-dimmed" : ""}
+            aria-label={`高亮 ${channel} 渠道`}
+            aria-pressed={selectedChannel === channel}
+            onMouseEnter={() => setHoveredChannel(channel)}
+            onMouseLeave={() => setHoveredChannel(null)}
+            onFocus={() => setHoveredChannel(channel)}
+            onBlur={() => setHoveredChannel(null)}
+            onClick={() => setSelectedChannel((current) => (current === channel ? null : channel))}
+          >
+            <span className="channel-swatch" style={{ backgroundColor: providerColors[channel] ?? "#6b706b" }} />
+            {channel}
+          </button>
+        ))}
+      </div>
+      <div
+        ref={chartElement}
+        className="price-chart-canvas"
+        role="img"
+        aria-label="模型能力与每 1 亿 Token 等效成本散点图"
+      />
+    </div>
+  );
 }
