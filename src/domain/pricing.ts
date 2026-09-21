@@ -24,8 +24,6 @@ export type ApiCostBreakdown = TokenBreakdown & {
   totalUsd: number;
 };
 
-export type SubscriptionMode = "multiplier" | "quota";
-
 function assertRate(name: string, value: number) {
   if (!Number.isFinite(value) || value < 0 || value > 1) {
     throw new RangeError(`${name} must be between 0 and 1`);
@@ -71,24 +69,29 @@ export function calculateApiCost(offer: ApiOffer, scenario: ComparisonScenario):
 
 export function calculateSubscriptionCost(
   offer: SubscriptionOffer,
-  mode: SubscriptionMode,
-  apiCostUsd: number,
+  apiOffer: ApiOffer,
+  currentScenario: ComparisonScenario,
 ) {
-  if (mode === "multiplier") {
-    if (offer.valueMultiplier === undefined) return null;
-    return {
-      totalUsd: apiCostUsd / offer.valueMultiplier,
-      apiEquivalentValueUsd: null,
-      effectiveMultiplier: offer.valueMultiplier,
-    };
+  const currentApiCost = calculateApiCost(apiOffer, currentScenario);
+  let monthlyApiValueUsd: number;
+  let monthlyTokenQuota: number | null = null;
+  let referenceApiCostUsd: number | null = null;
+
+  if (offer.valuation.basis === "api-credit") {
+    monthlyApiValueUsd = offer.valuation.apiCreditUsdPerPeriod * offer.valuation.periodsPerMonth;
+  } else {
+    monthlyTokenQuota = offer.valuation.tokensPerPeriod * offer.valuation.periodsPerMonth;
+    referenceApiCostUsd = calculateApiCost(apiOffer, offer.valuation.referenceScenario).totalUsd;
+    monthlyApiValueUsd = referenceApiCostUsd * (monthlyTokenQuota / COMPARISON_TOKEN_TOTAL);
   }
 
-  if (offer.monthlyTokenQuota === undefined) return null;
-  const apiEquivalentValueUsd = apiCostUsd * (offer.monthlyTokenQuota / COMPARISON_TOKEN_TOTAL);
+  const effectiveMultiplier = monthlyApiValueUsd / offer.monthlyFeeUsd;
   return {
-    totalUsd: (offer.monthlyFeeUsd * COMPARISON_TOKEN_TOTAL) / offer.monthlyTokenQuota,
-    apiEquivalentValueUsd,
-    effectiveMultiplier: apiEquivalentValueUsd / offer.monthlyFeeUsd,
+    totalUsd: currentApiCost.totalUsd / effectiveMultiplier,
+    monthlyApiValueUsd,
+    monthlyTokenQuota,
+    referenceApiCostUsd,
+    effectiveMultiplier,
   };
 }
 

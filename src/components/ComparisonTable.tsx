@@ -42,6 +42,7 @@ export function ComparisonTable({ points, currency, usdToCny }: ComparisonTableP
                 1 亿 Token <ArrowUpDown size={13} />
               </button>
             </th>
+            <th>优惠倍数</th>
             <th>证据</th>
             <th>来源</th>
           </tr>
@@ -59,6 +60,15 @@ export function ComparisonTable({ points, currency, usdToCny }: ComparisonTableP
               </td>
               <td className="numeric-cell cost-cell">
                 {formatter.format(convertUsd(point.costUsd, currency, usdToCny))}
+              </td>
+              <td className="numeric-cell multiplier-cell">
+                {point.subscriptionCost ? `${point.subscriptionCost.effectiveMultiplier.toFixed(1)}×` : "1.0×"}
+                {point.subscriptionCost && point.offer.kind === "subscription" ? (
+                  <span>
+                    月费 {formatter.format(convertUsd(point.offer.monthlyFeeUsd, currency, usdToCny))} · 月值{" "}
+                    {formatter.format(convertUsd(point.subscriptionCost.monthlyApiValueUsd, currency, usdToCny))}
+                  </span>
+                ) : null}
               </td>
               <td>
                 <span className={`evidence-tag evidence-tag--${point.offer.evidence.level}`}>

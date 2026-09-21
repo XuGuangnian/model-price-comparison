@@ -4,11 +4,11 @@ import { ComparisonTable } from "./components/ComparisonTable";
 import { ControlPanel } from "./components/ControlPanel";
 import snapshotJson from "./data/snapshot.json";
 import { buildComparisonPoints } from "./domain/comparison";
-import type { ComparisonScenario, SubscriptionMode } from "./domain/pricing";
+import type { ComparisonScenario } from "./domain/pricing";
 import { snapshotSchema, type EvidenceLevel } from "./domain/schema";
 
 const snapshot = snapshotSchema.parse(snapshotJson);
-const defaultScenario: ComparisonScenario = { inputShare: 0.8, cacheReadRate: 0.5, cacheWriteRate: 0 };
+const defaultScenario: ComparisonScenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 const allChannels = [...new Set(snapshot.offers.map((offer) => offer.provider))].sort();
 const PriceChart = lazy(() => import("./components/PriceChart").then((module) => ({ default: module.PriceChart })));
 
@@ -46,7 +46,6 @@ function SegmentedControl<T extends string>({
 export function App() {
   const [currency, setCurrency] = useState<"USD" | "CNY">("USD");
   const [scale, setScale] = useState<"linear" | "log">("linear");
-  const [subscriptionMode, setSubscriptionMode] = useState<SubscriptionMode>("multiplier");
   const [scenario, setScenario] = useState<ComparisonScenario>(defaultScenario);
   const [selectedChannels, setSelectedChannels] = useState(new Set(allChannels));
   const [selectedKinds, setSelectedKinds] = useState(new Set<"api" | "subscription">(["api", "subscription"]));
@@ -61,10 +60,7 @@ export function App() {
   if (!luna?.benchmark) throw new Error("Snapshot is missing the Luna benchmark threshold");
   const lunaThreshold = luna.benchmark.intelligenceIndex;
 
-  const allPoints = useMemo(
-    () => buildComparisonPoints(snapshot, scenario, subscriptionMode),
-    [scenario, subscriptionMode],
-  );
+  const allPoints = useMemo(() => buildComparisonPoints(snapshot, scenario), [scenario]);
   const points = useMemo(
     () =>
       allPoints.filter((point) => {
@@ -145,15 +141,6 @@ export function App() {
           onChange={setCurrency}
         />
         <SegmentedControl
-          label="订阅折算"
-          value={subscriptionMode}
-          options={[
-            { value: "multiplier", label: "价值倍数" },
-            { value: "quota", label: "固定额度" },
-          ]}
-          onChange={setSubscriptionMode}
-        />
-        <SegmentedControl
           label="价格轴"
           value={scale}
           options={[
@@ -199,7 +186,6 @@ export function App() {
               scale={scale}
               lunaThreshold={lunaThreshold}
               showPareto={showPareto}
-              subscriptionMode={subscriptionMode}
             />
           </Suspense>
           <div className="chart-footnote">
@@ -216,7 +202,7 @@ export function App() {
             <span className="eyebrow">COMPARISON LEDGER</span>
             <h2 id="results-heading">方案明细</h2>
           </div>
-          <span>{subscriptionMode === "multiplier" ? "订阅按价值倍数折算" : "订阅按月度 Token 额度折算"}</span>
+          <span>订阅按月度 API 等值自动折算</span>
         </div>
         <ComparisonTable points={points} currency={currency} usdToCny={snapshot.exchangeRate.usdToCny} />
       </section>

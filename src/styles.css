@@ -116,16 +116,18 @@ h2 { margin-top: 3px; font-size: 24px; line-height: 1.05; }
 table { width: 100%; min-width: 760px; border-collapse: collapse; table-layout: fixed; }
 th, td { padding: 11px 12px; border-bottom: 1px solid var(--line-light); text-align: left; vertical-align: middle; }
 th { color: #626862; background: var(--paper-deep); font-family: "IBM Plex Mono", monospace; font-size: 9px; font-weight: 500; text-transform: uppercase; }
-th:first-child { width: 31%; }
-th:nth-child(2) { width: 15%; }
-th:nth-child(3) { width: 17%; }
-th:nth-child(4) { width: 13%; }
-th:last-child { width: 24%; }
+th:first-child { width: 27%; }
+th:nth-child(2) { width: 13%; }
+th:nth-child(3) { width: 15%; }
+th:nth-child(4) { width: 14%; }
+th:nth-child(5) { width: 11%; }
+th:last-child { width: 20%; }
 td { color: #343934; font-size: 11px; }
 td > strong, .numeric-cell strong { display: block; color: var(--ink); font-size: 12px; }
 td > span, .numeric-cell span { display: block; margin-top: 2px; color: #7a807a; font-size: 9px; }
 .numeric-cell, .cost-cell { font-family: "IBM Plex Mono", monospace; }
 .cost-cell { color: #006f70; font-size: 13px; font-weight: 500; }
+.multiplier-cell { color: #813f2d; font-size: 12px; font-weight: 500; }
 .sort-button { padding: 0; display: inline-flex; align-items: center; gap: 5px; border: 0; background: transparent; cursor: pointer; font-family: inherit; font-size: inherit; text-transform: inherit; }
 .evidence-tag { width: fit-content; padding: 3px 6px; border-radius: 2px; font-family: "IBM Plex Mono", monospace; font-size: 9px; }
 .evidence-tag--official { color: #174d39; background: #d5eadf; }

@@ -60,7 +60,7 @@ describe("pricing calculator", () => {
     );
   });
 
-  it("calculates multiplier and quota subscriptions", () => {
+  it("derives a multiplier from a periodic API credit", () => {
     const subscription: SubscriptionOffer = {
       id: "sub-model-a",
       kind: "subscription",
@@ -68,19 +68,24 @@ describe("pricing calculator", () => {
       provider: "Provider",
       label: "Pro",
       monthlyFeeUsd: 100,
-      valueMultiplier: 5,
-      monthlyTokenQuota: 200_000_000,
+      valuation: {
+        basis: "api-credit",
+        apiCreditUsdPerPeriod: 100,
+        periodsPerMonth: 4,
+        periodLabel: "week",
+      },
       evidence: apiOffer.evidence,
     };
-    expect(calculateSubscriptionCost(subscription, "multiplier", 500)?.totalUsd).toBe(100);
-    expect(calculateSubscriptionCost(subscription, "quota", 500)).toEqual({
+    expect(calculateSubscriptionCost(subscription, apiOffer, { inputShare: 1, cacheReadRate: 0, cacheWriteRate: 0 })).toEqual({
       totalUsd: 50,
-      apiEquivalentValueUsd: 1000,
-      effectiveMultiplier: 10,
+      monthlyApiValueUsd: 400,
+      monthlyTokenQuota: null,
+      referenceApiCostUsd: null,
+      effectiveMultiplier: 4,
     });
   });
 
-  it("keeps quota cost invariant when the API scenario changes", () => {
+  it("derives a stable multiplier from token quota and its reference scenario", () => {
     const subscription: SubscriptionOffer = {
       id: "sub-model-a",
       kind: "subscription",
@@ -88,12 +93,34 @@ describe("pricing calculator", () => {
       provider: "Provider",
       label: "Pro",
       monthlyFeeUsd: 100,
-      monthlyTokenQuota: 200_000_000,
+      valuation: {
+        basis: "token-quota",
+        tokensPerPeriod: 200_000_000,
+        periodsPerMonth: 1,
+        periodLabel: "month",
+        referenceScenario: { inputShare: 1, cacheReadRate: 0, cacheWriteRate: 0 },
+      },
       evidence: apiOffer.evidence,
     };
-    expect(calculateSubscriptionCost(subscription, "quota", 100)?.totalUsd).toBe(
-      calculateSubscriptionCost(subscription, "quota", 900)?.totalUsd,
-    );
+    const regular = calculateSubscriptionCost(subscription, apiOffer, {
+      inputShare: 1,
+      cacheReadRate: 0,
+      cacheWriteRate: 0,
+    });
+    const cached = calculateSubscriptionCost(subscription, apiOffer, {
+      inputShare: 0.8,
+      cacheReadRate: 0.5,
+      cacheWriteRate: 0.1,
+    });
+    expect(regular).toEqual({
+      totalUsd: 50,
+      monthlyApiValueUsd: 400,
+      monthlyTokenQuota: 200_000_000,
+      referenceApiCostUsd: 200,
+      effectiveMultiplier: 4,
+    });
+    expect(cached.effectiveMultiplier).toBe(4);
+    expect(cached.totalUsd).toBe(73);
   });
 
   it("converts USD to CNY", () => {

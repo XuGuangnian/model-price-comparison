@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T06:20:32.407Z",
+  "generatedAt": "2026-09-21T07:35:45.741Z",
   "benchmarkSource": "https://artificialanalysis.ai/api/v2/language/models/free",
   "exchangeRate": {
     "usdToCny": 6.7487,
@@ -231,14 +231,23 @@
       "label": "ChatGPT Plus",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/20001354-gpt-56-and-gpt-6-pro-in-chatgpt",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "Plus 可用 Astra；模型倍数和额度为估算。"
+        "note": "按周 120M Tokens、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 20,
-      "valueMultiplier": 1,
-      "monthlyTokenQuota": 1500000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 120000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-plus-luna",
@@ -247,14 +256,23 @@
       "label": "ChatGPT Plus",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://openai.com/index/introducing-chatgpt-go/",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；模型倍数和 Token 额度为工作负载估算。"
+        "note": "按周 120M Tokens、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 20,
-      "valueMultiplier": 1.5,
-      "monthlyTokenQuota": 90000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 120000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-plus-sol",
@@ -263,14 +281,23 @@
       "label": "ChatGPT Plus",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://openai.com/index/introducing-chatgpt-go/",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；模型倍数和 Token 额度为工作负载估算。"
+        "note": "按周 120M Tokens、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 20,
-      "valueMultiplier": 1.25,
-      "monthlyTokenQuota": 4500000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 120000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-plus-terra",
@@ -279,14 +306,23 @@
       "label": "ChatGPT Plus",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://openai.com/index/introducing-chatgpt-go/",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；模型倍数和 Token 额度为工作负载估算。"
+        "note": "按 Plus 周额度、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 20,
-      "valueMultiplier": 2,
-      "monthlyTokenQuota": 12000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 120000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-pro20-astra",
@@ -294,15 +330,19 @@
       "provider": "OpenAI",
       "label": "ChatGPT Pro 20x",
       "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
-        "asOf": "2026-09-21",
-        "note": "月费为官方值；额度为估算。"
+        "level": "derived",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-20",
+        "note": "Astra 单模型周 API 等值 $1,463.00，按每月 4 周计算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 200,
-      "valueMultiplier": 5,
-      "monthlyTokenQuota": 70000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 1463,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      }
     },
     {
       "id": "chatgpt-pro20-luna",
@@ -310,15 +350,19 @@
       "provider": "OpenAI",
       "label": "ChatGPT Pro 20x",
       "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
-        "asOf": "2026-09-21",
-        "note": "月费为官方值；新订阅目前暂停，额度为估算。"
+        "level": "derived",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-20",
+        "note": "Luna 单模型周 API 等值 $1,145.10，按每月 4 周计算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 200,
-      "valueMultiplier": 6,
-      "monthlyTokenQuota": 1200000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 1145.1,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      }
     },
     {
       "id": "chatgpt-pro20-sol",
@@ -326,15 +370,19 @@
       "provider": "OpenAI",
       "label": "ChatGPT Pro 20x",
       "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
-        "asOf": "2026-09-21",
-        "note": "月费为官方值；额度为估算。"
+        "level": "derived",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-20",
+        "note": "Sol 单模型周 API 等值 $1,919.83，按每月 4 周计算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 200,
-      "valueMultiplier": 7,
-      "monthlyTokenQuota": 140000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 1919.83,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      }
     },
     {
       "id": "chatgpt-pro20-terra",
@@ -343,14 +391,23 @@
       "label": "ChatGPT Pro 20x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；额度为估算。"
+        "note": "Terra 暂无单模型美元实测，按 Pro 20x 周 Token 额度估算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 200,
-      "valueMultiplier": 8,
-      "monthlyTokenQuota": 250000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 2400000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-pro5-astra",
@@ -359,14 +416,23 @@
       "label": "ChatGPT Pro 5x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/20001354-gpt-56-and-gpt-6-pro-in-chatgpt",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；额度为估算。"
+        "note": "Astra Pro 5x 周额度按 200M Tokens 实测估算，每月按 4 周。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 100,
-      "valueMultiplier": 2.5,
-      "monthlyTokenQuota": 18000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 200000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-pro5-luna",
@@ -375,14 +441,23 @@
       "label": "ChatGPT Pro 5x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；不同模型额度会随产品限制变化。"
+        "note": "按周 600M Tokens、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 100,
-      "valueMultiplier": 3,
-      "monthlyTokenQuota": 450000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 600000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-pro5-sol",
@@ -391,14 +466,23 @@
       "label": "ChatGPT Pro 5x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；额度为估算。"
+        "note": "按周 600M Tokens、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 100,
-      "valueMultiplier": 3.5,
-      "monthlyTokenQuota": 40000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 600000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "chatgpt-pro5-terra",
@@ -407,14 +491,23 @@
       "label": "ChatGPT Pro 5x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费为官方值；额度为估算。"
+        "note": "按 Pro 5x 周额度、每月 4 周及 95% 缓存命中估算 API 等值。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 100,
-      "valueMultiplier": 4,
-      "monthlyTokenQuota": 70000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 600000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "claude-max20",
@@ -423,14 +516,23 @@
       "label": "Claude Max 20x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://support.claude.com/en/articles/11049741-what-is-the-max-plan",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费和相对用量官方公布；API 价值倍数及 Token 额度为估算。"
+        "note": "公开估算 8,320M Tokens/月；Fable 最多占周额度 50%，按 4,160M 计算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 200,
-      "valueMultiplier": 3,
-      "monthlyTokenQuota": 42000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 4160000000,
+        "periodsPerMonth": 1,
+        "periodLabel": "月",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "claude-max5",
@@ -439,30 +541,23 @@
       "label": "Claude Max 5x",
       "evidence": {
         "level": "estimated",
-        "sourceUrl": "https://support.claude.com/en/articles/11049741-what-is-the-max-plan",
+        "sourceUrl": "https://www.codingplan.fyi/?view=usage",
         "asOf": "2026-09-21",
-        "note": "月费和相对用量官方公布；API 价值倍数及 Token 额度为估算。"
+        "note": "公开估算 2,080M Tokens/月；Fable 最多占周额度 50%，按 1,040M 计算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 100,
-      "valueMultiplier": 1.5,
-      "monthlyTokenQuota": 12000000
-    },
-    {
-      "id": "claude-pro",
-      "modelId": "claude-fable-5-1",
-      "provider": "Anthropic",
-      "label": "Claude Pro",
-      "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://claude.com/pricing",
-        "asOf": "2026-09-21",
-        "note": "月费官方公布；Fable 仅可使用额外 usage credits，固定额度为估算。"
-      },
-      "kind": "subscription",
-      "monthlyFeeUsd": 20,
-      "valueMultiplier": 1,
-      "monthlyTokenQuota": 2000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 1040000000,
+        "periodsPerMonth": 1,
+        "periodLabel": "月",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "command-goat-deepseek",
@@ -473,12 +568,16 @@
         "level": "derived",
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
-        "note": "官方说明 $10 可获得最多 $70 模型额度；Token 额度按 98% 缓存命中估算。"
+        "note": "官方说明 $10 月费可获得最高 $70 模型 Credits。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 10,
-      "valueMultiplier": 7,
-      "monthlyTokenQuota": 3500000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 70,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "command-goat-gemini",
@@ -489,12 +588,16 @@
         "level": "derived",
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
-        "note": "官方计划总价值倍数；具体模型 Token 额度为估算。"
+        "note": "按 GOAT 最高每月 $70 模型 Credits 估算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 10,
-      "valueMultiplier": 7,
-      "monthlyTokenQuota": 240000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 70,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "command-goat-muse",
@@ -505,12 +608,16 @@
         "level": "derived",
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
-        "note": "官方计划总价值倍数；具体模型 Token 额度为估算。"
+        "note": "按 GOAT 最高每月 $70 模型 Credits 估算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 10,
-      "valueMultiplier": 7,
-      "monthlyTokenQuota": 420000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 70,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "deepseek-api-flash-offpeak",
@@ -594,15 +701,24 @@
       "provider": "Z AI",
       "label": "GLM Coding Lite",
       "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://zcode.z.ai/en",
+        "level": "derived",
+        "sourceUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
         "asOf": "2026-09-21",
-        "note": "月费和周积分官方公布；Token 额度与价值倍数为估算。"
+        "note": "官方 95% 命中区间 48M–97M Tokens/周取中点，每月按 4 周。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 18,
-      "valueMultiplier": 1,
-      "monthlyTokenQuota": 15000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 72500000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "glm-plan-max",
@@ -610,15 +726,24 @@
       "provider": "Z AI",
       "label": "GLM Coding Max",
       "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://zcode.z.ai/en",
+        "level": "derived",
+        "sourceUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
         "asOf": "2026-09-21",
-        "note": "官方标称 14 倍 Lite 用量；折算倍数和 Token 额度为估算。"
+        "note": "官方 95% 命中区间 676M–1,352M Tokens/周取中点，每月按 4 周。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 168,
-      "valueMultiplier": 1.5,
-      "monthlyTokenQuota": 210000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 1014000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "glm-plan-pro",
@@ -626,15 +751,24 @@
       "provider": "Z AI",
       "label": "GLM Coding Pro",
       "evidence": {
-        "level": "estimated",
-        "sourceUrl": "https://zcode.z.ai/en",
+        "level": "derived",
+        "sourceUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
         "asOf": "2026-09-21",
-        "note": "官方标称 6 倍 Lite 用量；折算倍数和 Token 额度为估算。"
+        "note": "官方 95% 命中区间 290M–580M Tokens/周取中点，每月按 4 周。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 80,
-      "valueMultiplier": 1.35,
-      "monthlyTokenQuota": 90000000
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 435000000,
+        "periodsPerMonth": 4,
+        "periodLabel": "周",
+        "referenceScenario": {
+          "inputShare": 0.9,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      }
     },
     {
       "id": "google-api-gemini",
@@ -664,12 +798,16 @@
         "level": "estimated",
         "sourceUrl": "https://x.ai/pricing",
         "asOf": "2026-09-21",
-        "note": "月费官方公布，但没有固定 Token 数；倍数与额度为估算。"
+        "note": "月费官方公布，未公开固定 Token 数；月 API 等值暂按 $60 估算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 30,
-      "valueMultiplier": 2,
-      "monthlyTokenQuota": 30000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 60,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "grok-super-plus",
@@ -680,12 +818,16 @@
         "level": "estimated",
         "sourceUrl": "https://x.ai/pricing",
         "asOf": "2026-09-21",
-        "note": "月费官方公布，但没有固定 Token 数；倍数与额度为估算。"
+        "note": "月费官方公布，未公开固定 Token 数；月 API 等值暂按 $300 估算。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 100,
-      "valueMultiplier": 3,
-      "monthlyTokenQuota": 100000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 300,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "meta-api-muse",
@@ -791,12 +933,16 @@
         "level": "derived",
         "sourceUrl": "https://dev.opencode.ai/go",
         "asOf": "2026-09-21",
-        "note": "官方限时月度用量为 $60；Token 额度按高缓存工作负载估算。"
+        "note": "DeepSeek V4.1 Flash 当前限时每月 $60 模型用量，月费 $10。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 10,
-      "valueMultiplier": 6,
-      "monthlyTokenQuota": 3000000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 60,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "opencode-go-luna",
@@ -807,12 +953,16 @@
         "level": "derived",
         "sourceUrl": "https://dev.opencode.ai/go",
         "asOf": "2026-09-21",
-        "note": "官方列出 $10 月费和 Luna $15 月度用量；Token 额度按高缓存工作负载估算。"
+        "note": "官方列出 Luna 每月 $15 模型用量，月费 $10。"
       },
       "kind": "subscription",
       "monthlyFeeUsd": 10,
-      "valueMultiplier": 1.5,
-      "monthlyTokenQuota": 300000000
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 15,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      }
     },
     {
       "id": "xai-api-grok",

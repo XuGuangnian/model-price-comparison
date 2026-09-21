@@ -1,4 +1,4 @@
-import { calculateApiCost, calculateSubscriptionCost, type ComparisonScenario, type SubscriptionMode } from "./pricing";
+import { calculateApiCost, calculateSubscriptionCost, type ComparisonScenario } from "./pricing";
 import type { ApiOffer, ModelRecord, Offer, Snapshot, SubscriptionOffer } from "./schema";
 
 export type ComparisonPoint = {
@@ -14,7 +14,6 @@ export type ComparisonPoint = {
 export function buildComparisonPoints(
   snapshot: Snapshot,
   scenario: ComparisonScenario,
-  subscriptionMode: SubscriptionMode,
 ) {
   const modelById = new Map(snapshot.models.map((model) => [model.id, model]));
   const apiOffers = snapshot.offers.filter((offer): offer is ApiOffer => offer.kind === "api");
@@ -38,8 +37,7 @@ export function buildComparisonPoints(
       return [{ id: offer.id, model, offer, costUsd: apiCost.totalUsd, referenceApiOffer, apiCost, subscriptionCost: null }];
     }
 
-    const subscriptionCost = calculateSubscriptionCost(offer, subscriptionMode, apiCost.totalUsd);
-    if (!subscriptionCost) return [];
+    const subscriptionCost = calculateSubscriptionCost(offer, referenceApiOffer, scenario);
     return [
       {
         id: offer.id,

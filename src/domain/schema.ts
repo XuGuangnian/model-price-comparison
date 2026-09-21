@@ -49,16 +49,37 @@ export const apiOfferSchema = offerBaseSchema.extend({
   }),
 });
 
-export const subscriptionOfferSchema = offerBaseSchema
-  .extend({
-    kind: z.literal("subscription"),
-    monthlyFeeUsd: z.number().positive(),
-    valueMultiplier: z.number().positive().optional(),
-    monthlyTokenQuota: z.number().positive().optional(),
+const scenarioSchema = z
+  .object({
+    inputShare: z.number().min(0).max(1),
+    cacheReadRate: z.number().min(0).max(1),
+    cacheWriteRate: z.number().min(0).max(1),
   })
-  .refine((offer) => offer.valueMultiplier !== undefined || offer.monthlyTokenQuota !== undefined, {
-    message: "A subscription needs a value multiplier or token quota",
+  .refine((scenario) => scenario.cacheReadRate + scenario.cacheWriteRate <= 1, {
+    message: "Cache read and write rates cannot exceed 1 in total",
   });
+
+const subscriptionValuationSchema = z.discriminatedUnion("basis", [
+  z.object({
+    basis: z.literal("api-credit"),
+    apiCreditUsdPerPeriod: z.number().positive(),
+    periodsPerMonth: z.number().positive(),
+    periodLabel: z.string().min(1),
+  }),
+  z.object({
+    basis: z.literal("token-quota"),
+    tokensPerPeriod: z.number().positive(),
+    periodsPerMonth: z.number().positive(),
+    periodLabel: z.string().min(1),
+    referenceScenario: scenarioSchema,
+  }),
+]);
+
+export const subscriptionOfferSchema = offerBaseSchema.extend({
+  kind: z.literal("subscription"),
+  monthlyFeeUsd: z.number().positive(),
+  valuation: subscriptionValuationSchema,
+});
 
 export const offerSchema = z.discriminatedUnion("kind", [apiOfferSchema, subscriptionOfferSchema]);
 
@@ -103,5 +124,6 @@ export type BenchmarkRecord = z.infer<typeof benchmarkSchema>;
 export type ModelRecord = z.infer<typeof modelSchema>;
 export type ApiOffer = z.infer<typeof apiOfferSchema>;
 export type SubscriptionOffer = z.infer<typeof subscriptionOfferSchema>;
+export type SubscriptionValuation = z.infer<typeof subscriptionValuationSchema>;
 export type Offer = z.infer<typeof offerSchema>;
 export type Snapshot = z.infer<typeof snapshotSchema>;

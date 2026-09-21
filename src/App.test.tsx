@@ -13,24 +13,25 @@ describe("comparison workbench", () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "模型价格图谱" })).toBeInTheDocument();
     expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("10 模型");
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("36 points · USD");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("35 points · USD");
     expect(screen.getByText("DeepSeek V4 Pro 0813")).toBeInTheDocument();
+    expect(screen.getByRole("slider", { name: /输入 : 输出/ })).toHaveValue("90");
+    expect(screen.getByRole("slider", { name: /缓存命中/ })).toHaveValue("95");
   });
 
-  it("switches currency and subscription mapping", async () => {
+  it("switches currency while keeping unified subscription valuation", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "CNY" }));
-    fireEvent.click(screen.getByRole("button", { name: "固定额度" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("36 points · CNY");
-    expect(screen.getByText("订阅按月度 Token 额度折算")).toBeInTheDocument();
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("35 points · CNY");
+    expect(screen.getByText("订阅按月度 API 等值自动折算")).toBeInTheDocument();
   });
 
   it("filters estimates and includes below-threshold models", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("checkbox", { name: "估算" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("16 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("22 points");
     fireEvent.click(screen.getByRole("checkbox", { name: "显示 Luna 门槛以下" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("18 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("24 points");
   });
 
   it("opens and closes the mobile parameter drawer", () => {

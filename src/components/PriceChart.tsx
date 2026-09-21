@@ -11,7 +11,7 @@ import { LabelLayout } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
 import type { EChartsType, SeriesOption } from "echarts";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { convertUsd, type SubscriptionMode } from "../domain/pricing";
+import { convertUsd } from "../domain/pricing";
 import { getParetoPointIds, type ComparisonPoint } from "../domain/comparison";
 
 use([
@@ -47,7 +47,6 @@ type PriceChartProps = {
   scale: "linear" | "log";
   lunaThreshold: number;
   showPareto: boolean;
-  subscriptionMode: SubscriptionMode;
 };
 
 export function PriceChart(props: PriceChartProps) {
@@ -179,11 +178,22 @@ export function PriceChart(props: PriceChartProps) {
             const subscription = point.subscriptionCost;
             const extra =
               point.offer.kind === "subscription"
-                ? `<div class="chart-tip__row"><span>${props.subscriptionMode === "multiplier" ? "价值倍数" : "当前 API 等值"}</span><b>${
-                    props.subscriptionMode === "multiplier"
-                      ? `${subscription?.effectiveMultiplier.toFixed(2)}×`
-                      : formatter.format(convertUsd(subscription?.apiEquivalentValueUsd ?? 0, props.currency, props.usdToCny))
-                  }</b></div><div class="chart-tip__muted">参照 ${escapeHtml(point.referenceApiOffer.label)}</div>`
+                ? `<div class="chart-tip__row"><span>优惠倍数</span><b>${subscription?.effectiveMultiplier.toFixed(2)}×</b></div><div class="chart-tip__row"><span>月 API 等值</span><b>${formatter.format(
+                    convertUsd(subscription?.monthlyApiValueUsd ?? 0, props.currency, props.usdToCny),
+                  )}</b></div><div class="chart-tip__row"><span>月费</span><b>${formatter.format(
+                    convertUsd(point.offer.monthlyFeeUsd, props.currency, props.usdToCny),
+                  )}</b></div>${
+                    subscription?.monthlyTokenQuota
+                      ? `<div class="chart-tip__row"><span>月 Token / 参考命中</span><b>${new Intl.NumberFormat("zh-CN", {
+                          notation: "compact",
+                          maximumFractionDigits: 2,
+                        }).format(subscription.monthlyTokenQuota)} · ${Math.round(
+                          point.offer.valuation.basis === "token-quota"
+                            ? point.offer.valuation.referenceScenario.cacheReadRate * 100
+                            : 0,
+                        )}%</b></div>`
+                      : ""
+                  }<div class="chart-tip__muted">参照 ${escapeHtml(point.referenceApiOffer.label)}</div>`
                 : `<div class="chart-tip__row"><span>输入 / 缓存 / 写入 / 输出</span><b>${formatter.format(
                     convertUsd(point.apiCost.regularInputCost, props.currency, props.usdToCny),
                   )} · ${formatter.format(convertUsd(point.apiCost.cachedInputCost, props.currency, props.usdToCny))} · ${formatter.format(
