@@ -32,6 +32,7 @@ const providerColors: Record<string, string> = {
   Anthropic: "#d06b3c",
   Meta: "#128c91",
   Google: "#d79c12",
+  Xiaomi: "#f05a28",
   OpenCode: "#7656d6",
   "Command Code": "#ae4f83",
 };
@@ -40,6 +41,7 @@ const channelOrder = [
   "OpenAI",
   "Anthropic",
   "DeepSeek",
+  "Xiaomi",
   "Google",
   "Meta",
   "Z AI",
@@ -83,7 +85,7 @@ export function PriceChart(props: PriceChartProps) {
     const formatter = new Intl.NumberFormat("zh-CN", {
       style: "currency",
       currency: props.currency,
-      maximumFractionDigits: 1,
+      maximumFractionDigits: 2,
     });
     const labeledModels = new Set<string>();
 

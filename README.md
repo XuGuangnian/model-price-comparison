@@ -42,6 +42,8 @@ Token 额度计划：月 API 等值 = 参考场景 API 成本 × 月 Token 额�
 
 当前 Codex Pro 20x 的 Astra、Sol、Luna 使用 Codex Radar 的单模型周 API 等值；GLM Coding Plan 使用官方 95% 缓存命中率 Token 区间中点；其他估算值均在目录中保留来源与说明。
 
+MiMo V2.6 Pro/Flash 使用 Xiaomi 官方海外实时 API 价格。Token Plan 按各档固定 Credits、模型的缓存命中/未命中/输出 Credit 消耗率和中国区连续包月首购人民币价格折算；人民币月费按快照汇率换算后存储，夜间 0.8 倍消耗不计入基准。OpenCode Go 的 MiMo V2.6 Pro/Flash 月度模型用量与 Command Code GOAT 的 MiMo V2.6 Pro Credits 分别作为独立渠道展示。
+
 Claude Fable 5.1 没有可用的订阅额度实测，因此只展示 API。Claude Max 订阅仅映射到有模型级数据的 Opus 5 和 Sonnet 5；额度来自 CodingPlan.fyi 的公开 `plan-models.json`，并统一标记为估算。
 
 最低 Index 默认取当前快照中 GPT-5.6 Luna 的 `37.3`，可在参数面板直接输入任意 `0–100` 数值。

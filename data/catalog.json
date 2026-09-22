@@ -76,6 +76,31 @@
       "aaSlug": "deepseek-v4-pro"
     },
     {
+      "id": "mimo-v2-6-pro",
+      "name": "MiMo V2.6 Pro",
+      "provider": "Xiaomi",
+      "family": "MiMo V2.6",
+      "version": "V2.6 Pro",
+      "releaseDate": "2026-09-21",
+      "aaSlug": "mimo-v2-6-pro",
+      "benchmark": {
+        "artificialAnalysisId": "24d8fdfe-6241-424e-b7b7-1b6efb06e4fb",
+        "intelligenceIndex": 46.3242065310383,
+        "globalRank": 17,
+        "indexVersion": "4.3",
+        "fetchedAt": "2026-09-22T01:38:03.806Z"
+      }
+    },
+    {
+      "id": "mimo-v2-6-flash",
+      "name": "MiMo V2.6 Flash",
+      "provider": "Xiaomi",
+      "family": "MiMo V2.6",
+      "version": "V2.6 Flash",
+      "releaseDate": "2026-09-22",
+      "aaSlug": "mimo-v2-6-flash"
+    },
+    {
       "id": "glm-5-3",
       "name": "GLM-5.3",
       "provider": "Z AI",
@@ -364,6 +389,66 @@
         "cacheReadUsdPerMillion": 0.044,
         "cacheWriteUsdPerMillion": null,
         "outputUsdPerMillion": 3.96
+      }
+    },
+    {
+      "id": "xiaomi-api-mimo-pro",
+      "kind": "api",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Xiaomi",
+      "label": "MiMo API",
+      "verifyAaPricing": true,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go",
+        "asOf": "2026-09-22",
+        "note": "海外实时推理价格；缓存写入限时免费。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 0.435,
+        "cacheReadUsdPerMillion": 0.0036,
+        "cacheWriteUsdPerMillion": 0,
+        "outputUsdPerMillion": 0.87
+      }
+    },
+    {
+      "id": "xiaomi-api-mimo-pro-ultraspeed",
+      "kind": "api",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Xiaomi",
+      "label": "MiMo API · UltraSpeed",
+      "verifyAaPricing": false,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go",
+        "asOf": "2026-09-22",
+        "note": "同一 Pro 模型的最高 20 倍输出速度档；缓存写入限时免费。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 4.35,
+        "cacheReadUsdPerMillion": 0.036,
+        "cacheWriteUsdPerMillion": 0,
+        "outputUsdPerMillion": 8.7
+      }
+    },
+    {
+      "id": "xiaomi-api-mimo-flash",
+      "kind": "api",
+      "modelId": "mimo-v2-6-flash",
+      "provider": "Xiaomi",
+      "label": "MiMo API",
+      "verifyAaPricing": false,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://mimo.mi.com/docs/zh-CN/price/pay-as-you-go",
+        "asOf": "2026-09-22",
+        "note": "海外实时推理价格；缓存写入限时免费，暂无 AA 评分。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 0.14,
+        "cacheReadUsdPerMillion": 0.0028,
+        "cacheWriteUsdPerMillion": 0,
+        "outputUsdPerMillion": 0.28
       }
     },
     {
@@ -667,6 +752,166 @@
       }
     },
     {
+      "id": "mimo-token-lite-pro",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Lite",
+      "monthlyFeeUsd": 5.085423859409961,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 5.943841,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "4.1B Credits 按 Pro 官方 Credit 消耗率及默认 90:10、95% 缓存场景折算；月费为中国区连续包月首购价 ¥34.32，按快照汇率换算。"
+      }
+    },
+    {
+      "id": "mimo-token-standard-pro",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Standard",
+      "monthlyFeeUsd": 12.909152873886823,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 15.946891,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "11B Credits 按 Pro 官方 Credit 消耗率及默认场景折算；月费为中国区连续包月首购价 ¥87.12，按快照汇率换算。"
+      }
+    },
+    {
+      "id": "mimo-token-pro-pro",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Pro",
+      "monthlyFeeUsd": 42.90011409604812,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 55.089261,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "38B Credits 按 Pro 官方 Credit 消耗率及默认场景折算；月费为中国区连续包月首购价 ¥289.52，按快照汇率换算。"
+      }
+    },
+    {
+      "id": "mimo-token-max-pro",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Max",
+      "monthlyFeeUsd": 85.93062367567086,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 118.876827,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "82B Credits 按 Pro 官方 Credit 消耗率及默认场景折算；月费为中国区连续包月首购价 ¥579.92，按快照汇率换算。"
+      }
+    },
+    {
+      "id": "mimo-token-lite-flash",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-flash",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Lite",
+      "monthlyFeeUsd": 5.085423859409961,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 5.74,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "4.1B Credits 按 Flash 官方 Credit 消耗率折算；月费为中国区连续包月首购价 ¥34.32，暂无 AA 评分。"
+      }
+    },
+    {
+      "id": "mimo-token-standard-flash",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-flash",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Standard",
+      "monthlyFeeUsd": 12.909152873886823,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 15.4,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "11B Credits 按 Flash 官方 Credit 消耗率折算；月费为中国区连续包月首购价 ¥87.12，暂无 AA 评分。"
+      }
+    },
+    {
+      "id": "mimo-token-pro-flash",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-flash",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Pro",
+      "monthlyFeeUsd": 42.90011409604812,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 53.2,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "38B Credits 按 Flash 官方 Credit 消耗率折算；月费为中国区连续包月首购价 ¥289.52，暂无 AA 评分。"
+      }
+    },
+    {
+      "id": "mimo-token-max-flash",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-flash",
+      "provider": "Xiaomi",
+      "label": "MiMo Token Plan Max",
+      "monthlyFeeUsd": 85.93062367567086,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 114.8,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://platform.xiaomimimo.com/token-plan?edition=PERSONAL",
+        "asOf": "2026-09-22",
+        "note": "82B Credits 按 Flash 官方 Credit 消耗率折算；月费为中国区连续包月首购价 ¥579.92，暂无 AA 评分。"
+      }
+    },
+    {
       "id": "opencode-go-luna",
       "kind": "subscription",
       "modelId": "gpt-5-6-luna",
@@ -707,6 +952,46 @@
       }
     },
     {
+      "id": "opencode-go-mimo-flash",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-flash",
+      "provider": "OpenCode",
+      "label": "OpenCode Go",
+      "monthlyFeeUsd": 10,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 60,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://dev.opencode.ai/go",
+        "asOf": "2026-09-22",
+        "note": "官方列出 MiMo V2.6 Flash 每月 $60 模型用量，月费 $10；暂无 AA 评分。"
+      }
+    },
+    {
+      "id": "opencode-go-mimo-pro",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "OpenCode",
+      "label": "OpenCode Go",
+      "monthlyFeeUsd": 10,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 15,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://dev.opencode.ai/docs/go/",
+        "asOf": "2026-09-22",
+        "note": "官方完整模型表列出 MiMo V2.6 Pro 每月 $15 模型用量，月费 $10。"
+      }
+    },
+    {
       "id": "command-goat-deepseek",
       "kind": "subscription",
       "modelId": "deepseek-v4-1-flash",
@@ -724,6 +1009,26 @@
         "sourceUrl": "https://commandcode.ai/docs/plans/goat",
         "asOf": "2026-09-21",
         "note": "官方说明 $10 月费可获得最高 $70 模型 Credits。"
+      }
+    },
+    {
+      "id": "command-goat-mimo-pro",
+      "kind": "subscription",
+      "modelId": "mimo-v2-6-pro",
+      "provider": "Command Code",
+      "label": "GOAT Plan",
+      "monthlyFeeUsd": 10,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 70,
+        "periodsPerMonth": 1,
+        "periodLabel": "月"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://commandcode.ai/docs/plans/goat",
+        "asOf": "2026-09-22",
+        "note": "GOAT 已列入 MiMo V2.6 Pro，按每月最高 $70 模型 Credits 估算。"
       }
     },
     {

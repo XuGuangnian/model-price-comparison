@@ -8,7 +8,7 @@ const scenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 
 describe("comparison points", () => {
   it("builds every priced API and subscription offer", () => {
-    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(38);
+    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(52);
   });
 
   it("uses the cheapest API offer as the subscription reference", () => {
@@ -35,6 +35,23 @@ describe("comparison points", () => {
         (pro20?.subscriptionCost?.effectiveMultiplier ?? 0) / 2,
       );
     }
+  });
+
+  it("converts MiMo Token Plan credits into model-specific API value", () => {
+    const points = buildComparisonPoints(snapshot, scenario);
+    const pro = points.find((point) => point.id === "mimo-token-max-pro");
+    const flash = points.find((point) => point.id === "mimo-token-max-flash");
+    expect(pro?.subscriptionCost?.monthlyApiValueUsd).toBeCloseTo(118.876827);
+    expect(flash?.subscriptionCost?.monthlyApiValueUsd).toBeCloseTo(114.8);
+    expect(pro?.subscriptionCost?.effectiveMultiplier).toBeCloseTo(1.3834117);
+  });
+
+  it("includes the OpenCode Go allowance for MiMo V2.6 Pro", () => {
+    const point = buildComparisonPoints(snapshot, scenario).find(
+      (candidate) => candidate.id === "opencode-go-mimo-pro",
+    );
+    expect(point?.subscriptionCost?.monthlyApiValueUsd).toBe(15);
+    expect(point?.subscriptionCost?.effectiveMultiplier).toBe(1.5);
   });
 
   it("retains older models when they clear the Index threshold", () => {

@@ -26,7 +26,7 @@ test("desktop comparison workflow", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "模型价格图谱" })).toBeVisible();
-  await expect(page.getByText("15 模型")).toBeVisible();
+  await expect(page.getByText("16 模型")).toBeVisible();
   await expect(page.getByRole("slider").nth(0)).toHaveValue("90");
   await expect(page.getByRole("slider").nth(1)).toHaveValue("95");
   await expectNonBlankChart(page);
@@ -50,8 +50,8 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(page.locator("td.cost-cell").filter({ hasText: "¥" }).first()).toBeVisible();
 
   await page.getByRole("spinbutton", { name: "最低 Intelligence Index" }).fill("0");
-  await expect(page.getByText("16 模型")).toBeVisible();
-  await expect(page.getByText("38 方案")).toBeVisible();
+  await expect(page.getByText("17 模型")).toBeVisible();
+  await expect(page.getByText("46 方案")).toBeVisible();
   await expect(page.getByRole("row").filter({ hasText: "GPT-5.6 Terra" })).toHaveCount(1);
 });
 

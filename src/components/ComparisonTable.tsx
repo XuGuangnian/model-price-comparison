@@ -23,7 +23,7 @@ export function ComparisonTable({ points, currency, usdToCny }: ComparisonTableP
   const formatter = new Intl.NumberFormat("zh-CN", {
     style: "currency",
     currency,
-    maximumFractionDigits: 1,
+    maximumFractionDigits: 2,
   });
 
   return (
