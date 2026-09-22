@@ -81,8 +81,7 @@ h2 { margin-top: 3px; font-size: 24px; line-height: 1.05; }
 .limit-control > span { display: grid; gap: 2px; }
 .limit-control small { color: #777269; font-family: "IBM Plex Mono", monospace; font-size: 9px; font-weight: 500; }
 .limit-control > input, .bonus-value input { width: 72px; height: 30px; padding: 0 8px; border: 1px solid #aaa59a; border-radius: 3px; color: var(--teal); background: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500; }
-.bonus-value { display: flex; align-items: center; gap: 4px; color: var(--teal); font-family: "IBM Plex Mono", monospace; font-size: 11px; }
-.bonus-value input { width: 48px; }
+.bonus-value { display: block; }
 .icon-button:hover, .mobile-filter-button:hover { background: #e0dcd1; }
 
 .analysis-stage { min-width: 0; padding: 20px 24px 14px; position: relative; background: #f7f4eb; }

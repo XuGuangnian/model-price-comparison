@@ -215,7 +215,6 @@ export function ControlPanel(props: ControlPanelProps) {
             <small>仅 ChatGPT 订阅 · Index</small>
           </span>
           <span className="bonus-value">
-            <span aria-hidden="true">+</span>
             <input
               type="number"
               aria-label="Codex 工具加分"
