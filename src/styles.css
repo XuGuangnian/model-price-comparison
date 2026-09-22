@@ -74,9 +74,12 @@ h2 { margin-top: 3px; font-size: 24px; line-height: 1.05; }
 .section-heading { display: flex; align-items: flex-start; justify-content: space-between; }
 .text-button { padding: 0; border: 0; color: var(--teal); background: transparent; cursor: pointer; font-size: 10px; font-weight: 650; }
 .channel-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 8px; }
-.control-section--index { padding-block: 13px; }
-.index-control { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; font-weight: 600; }
-.index-control input { width: 72px; height: 30px; padding: 0 8px; border: 1px solid #aaa59a; border-radius: 3px; color: var(--teal); background: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500; }
+.control-section--limits { padding-block: 4px; }
+.limit-control { min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; font-weight: 600; }
+.limit-control + .limit-control { border-top: 1px solid rgba(177, 169, 155, .55); }
+.limit-control > span { display: grid; gap: 2px; }
+.limit-control small { color: #777269; font-family: "IBM Plex Mono", monospace; font-size: 9px; font-weight: 500; }
+.limit-control input { width: 72px; height: 30px; padding: 0 8px; border: 1px solid #aaa59a; border-radius: 3px; color: var(--teal); background: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500; }
 .reset-button { width: calc(100% - 36px); height: 35px; margin: 15px 18px; display: flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid #a9a499; border-radius: 3px; background: transparent; cursor: pointer; font-size: 11px; font-weight: 650; }
 .reset-button:hover, .icon-button:hover, .mobile-filter-button:hover { background: #e0dcd1; }
 

@@ -1,6 +1,6 @@
 import { RotateCcw, X } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
-import type { ComparisonScenario } from "../domain/pricing";
+import { convertUsd, type ComparisonScenario } from "../domain/pricing";
 import type { EvidenceLevel } from "../domain/schema";
 
 type ControlPanelProps = {
@@ -15,6 +15,10 @@ type ControlPanelProps = {
   setScenario: Dispatch<SetStateAction<ComparisonScenario>>;
   minimumIndex: number;
   setMinimumIndex: (value: number) => void;
+  maximumCostUsd: number;
+  setMaximumCostUsd: (value: number) => void;
+  currency: "USD" | "CNY";
+  usdToCny: number;
   onReset: () => void;
   onClose?: () => void;
 };
@@ -67,6 +71,7 @@ export function ControlPanel(props: ControlPanelProps) {
   const readPercent = Math.round(props.scenario.cacheReadRate * 100);
   const writePercent = Math.round(props.scenario.cacheWriteRate * 100);
   const inputPercent = Math.round(props.scenario.inputShare * 100);
+  const maximumCost = Math.round(convertUsd(props.maximumCostUsd, props.currency, props.usdToCny) * 100) / 100;
 
   return (
     <aside className="control-panel" aria-label="比较参数">
@@ -168,8 +173,8 @@ export function ControlPanel(props: ControlPanelProps) {
         </div>
       </section>
 
-      <section className="control-section control-section--index">
-        <label className="index-control">
+      <section className="control-section control-section--limits">
+        <label className="limit-control">
           <span>最低 Intelligence Index</span>
           <input
             type="number"
@@ -179,6 +184,25 @@ export function ControlPanel(props: ControlPanelProps) {
             step="0.1"
             value={props.minimumIndex}
             onChange={(event) => props.setMinimumIndex(Math.min(100, Math.max(0, Number(event.target.value))))}
+          />
+        </label>
+        <label className="limit-control">
+          <span>
+            最高单价
+            <small>{props.currency} / 1 亿 Token</small>
+          </span>
+          <input
+            type="number"
+            aria-label="最高单价（1 亿 Token）"
+            min="0"
+            step={props.currency === "USD" ? "1" : "10"}
+            value={maximumCost}
+            onChange={(event) => {
+              const value = event.currentTarget.valueAsNumber;
+              if (!Number.isNaN(value)) {
+                props.setMaximumCostUsd(Math.max(0, props.currency === "USD" ? value : value / props.usdToCny));
+              }
+            }}
           />
         </label>
       </section>
