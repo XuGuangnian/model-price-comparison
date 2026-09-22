@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 
@@ -19,6 +19,7 @@ describe("comparison workbench", () => {
     expect(screen.getByRole("slider", { name: /输入 : 输出/ })).toHaveValue("90");
     expect(screen.getByRole("slider", { name: /缓存命中/ })).toHaveValue("95");
     expect(screen.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" })).toHaveValue(300);
+    expect(screen.getByRole("spinbutton", { name: "Codex 工具加分" })).toHaveValue(1);
   });
 
   it("switches currency while keeping unified subscription valuation", async () => {
@@ -46,6 +47,28 @@ describe("comparison workbench", () => {
     expect(screen.queryByText("MiMo API", { selector: "span" })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "恢复默认" }));
     expect(maximumCost).toHaveValue(300);
+  });
+
+  it("adjusts only ChatGPT subscription intelligence and resets to plus one", () => {
+    render(<App />);
+    const bonus = screen.getByRole("spinbutton", { name: "Codex 工具加分" });
+    const astraSubscription = screen.getByRole("row", { name: /GPT-6 AstraChatGPT Pro 20x/ });
+    expect(within(astraSubscription).getByText("53.7")).toBeInTheDocument();
+    fireEvent.change(bonus, { target: { value: "0" } });
+    expect(within(astraSubscription).getByText("52.7")).toBeInTheDocument();
+    fireEvent.change(bonus, { target: { value: "3" } });
+    expect(within(astraSubscription).getByText("55.7")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "恢复默认" }));
+    expect(bonus).toHaveValue(1);
+    expect(within(astraSubscription).getByText("53.7")).toBeInTheDocument();
+  });
+
+  it("does not list a model as excluded when its Codex-adjusted subscription clears the threshold", () => {
+    render(<App />);
+    fireEvent.change(screen.getByRole("spinbutton", { name: "最低 Intelligence Index" }), { target: { value: "38" } });
+    const notes = screen.getByRole("region", { name: "未进入当前图表" });
+    expect(screen.getByRole("row", { name: /GPT-5.6 LunaChatGPT Pro 20x 38.3/ })).toBeInTheDocument();
+    expect(within(notes).queryByText("GPT-5.6 Luna")).not.toBeInTheDocument();
   });
 
   it("opens and closes the mobile parameter drawer", () => {

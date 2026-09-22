@@ -6,6 +6,8 @@ export type ComparisonPoint = {
   model: ModelRecord;
   offer: Offer;
   costUsd: number;
+  intelligenceIndex: number | null;
+  intelligenceBonus: number;
   referenceApiOffer: ApiOffer;
   apiCost: ReturnType<typeof calculateApiCost>;
   subscriptionCost: ReturnType<typeof calculateSubscriptionCost> | null;
@@ -34,7 +36,17 @@ export function buildComparisonPoints(
     const apiCost = apiResults.get(referenceApiOffer.id) as ReturnType<typeof calculateApiCost>;
 
     if (offer.kind === "api") {
-      return [{ id: offer.id, model, offer, costUsd: apiCost.totalUsd, referenceApiOffer, apiCost, subscriptionCost: null }];
+      return [{
+        id: offer.id,
+        model,
+        offer,
+        costUsd: apiCost.totalUsd,
+        intelligenceIndex: model.benchmark?.intelligenceIndex ?? null,
+        intelligenceBonus: 0,
+        referenceApiOffer,
+        apiCost,
+        subscriptionCost: null,
+      }];
     }
 
     const subscriptionCost = calculateSubscriptionCost(offer, referenceApiOffer, scenario);
@@ -44,11 +56,29 @@ export function buildComparisonPoints(
         model,
         offer,
         costUsd: subscriptionCost.totalUsd,
+        intelligenceIndex: model.benchmark?.intelligenceIndex ?? null,
+        intelligenceBonus: 0,
         referenceApiOffer,
         apiCost,
         subscriptionCost,
       },
     ];
+  });
+}
+
+export function applyCodexIntelligenceBonus(points: ComparisonPoint[], bonus: number) {
+  const normalizedBonus = Math.min(3, Math.max(0, bonus));
+  return points.map((point) => {
+    const baseIndex = point.model.benchmark?.intelligenceIndex ?? null;
+    const intelligenceBonus =
+      baseIndex !== null && point.offer.kind === "subscription" && point.offer.id.startsWith("chatgpt-")
+        ? normalizedBonus
+        : 0;
+    return {
+      ...point,
+      intelligenceIndex: baseIndex === null ? null : baseIndex + intelligenceBonus,
+      intelligenceBonus,
+    };
   });
 }
 
@@ -59,11 +89,9 @@ export function getParetoPointIds(points: ComparisonPoint[]) {
       (candidate) =>
         candidate.id !== point.id &&
         candidate.costUsd <= point.costUsd &&
-        (candidate.model.benchmark?.intelligenceIndex ?? -Infinity) >=
-          (point.model.benchmark?.intelligenceIndex ?? -Infinity) &&
+        (candidate.intelligenceIndex ?? -Infinity) >= (point.intelligenceIndex ?? -Infinity) &&
         (candidate.costUsd < point.costUsd ||
-          (candidate.model.benchmark?.intelligenceIndex ?? -Infinity) >
-            (point.model.benchmark?.intelligenceIndex ?? -Infinity)),
+          (candidate.intelligenceIndex ?? -Infinity) > (point.intelligenceIndex ?? -Infinity)),
     );
     if (!dominated) ids.add(point.id);
   }

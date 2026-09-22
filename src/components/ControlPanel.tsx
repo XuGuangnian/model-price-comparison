@@ -17,6 +17,8 @@ type ControlPanelProps = {
   setMinimumIndex: (value: number) => void;
   maximumCostCny: number;
   setMaximumCostCny: (value: number) => void;
+  codexIntelligenceBonus: number;
+  setCodexIntelligenceBonus: (value: number) => void;
   onReset: () => void;
   onClose?: () => void;
 };
@@ -77,11 +79,16 @@ export function ControlPanel(props: ControlPanelProps) {
           <span className="eyebrow">SCENARIO</span>
           <h2>比较参数</h2>
         </div>
-        {props.onClose ? (
-          <button className="icon-button close-controls" type="button" onClick={props.onClose} aria-label="关闭参数面板">
-            <X size={18} />
+        <div className="control-panel__actions">
+          <button className="icon-button" type="button" onClick={props.onReset} aria-label="恢复默认" title="恢复默认">
+            <RotateCcw size={16} />
           </button>
-        ) : null}
+          {props.onClose ? (
+            <button className="icon-button close-controls" type="button" onClick={props.onClose} aria-label="关闭参数面板">
+              <X size={18} />
+            </button>
+          ) : null}
+        </div>
       </div>
 
       <section className="control-section">
@@ -202,12 +209,31 @@ export function ControlPanel(props: ControlPanelProps) {
             }}
           />
         </label>
+        <label className="limit-control">
+          <span>
+            Codex 工具加成
+            <small>仅 ChatGPT 订阅 · Index</small>
+          </span>
+          <span className="bonus-value">
+            <span aria-hidden="true">+</span>
+            <input
+              type="number"
+              aria-label="Codex 工具加分"
+              min="0"
+              max="3"
+              step="1"
+              value={props.codexIntelligenceBonus}
+              onChange={(event) => {
+                const value = event.currentTarget.valueAsNumber;
+                if (!Number.isNaN(value)) {
+                  props.setCodexIntelligenceBonus(Math.min(3, Math.max(0, value)));
+                }
+              }}
+            />
+          </span>
+        </label>
       </section>
 
-      <button type="button" className="reset-button" onClick={props.onReset}>
-        <RotateCcw size={15} />
-        恢复默认
-      </button>
     </aside>
   );
 }

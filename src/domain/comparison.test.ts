@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import snapshotJson from "../data/snapshot.json";
-import { buildComparisonPoints, getParetoPointIds } from "./comparison";
+import { applyCodexIntelligenceBonus, buildComparisonPoints, getParetoPointIds } from "./comparison";
 import { snapshotSchema } from "./schema";
 
 const snapshot = snapshotSchema.parse(snapshotJson);
@@ -35,6 +35,17 @@ describe("comparison points", () => {
         (pro20?.subscriptionCost?.effectiveMultiplier ?? 0) / 2,
       );
     }
+  });
+
+  it("applies a bounded Codex bonus only to ChatGPT subscriptions", () => {
+    const points = applyCodexIntelligenceBonus(buildComparisonPoints(snapshot, scenario), 4);
+    const chatgpt = points.find((point) => point.id === "chatgpt-pro20-astra");
+    const api = points.find((point) => point.id === "openai-api-astra");
+    const openCode = points.find((point) => point.id === "opencode-go-luna");
+    expect(chatgpt?.intelligenceIndex).toBeCloseTo(55.7);
+    expect(chatgpt?.intelligenceBonus).toBe(3);
+    expect(api?.intelligenceIndex).toBeCloseTo(52.7);
+    expect(openCode?.intelligenceIndex).toBeCloseTo(37.3);
   });
 
   it("converts MiMo Token Plan credits into model-specific API value", () => {

@@ -108,14 +108,14 @@ export function PriceChart(props: PriceChartProps) {
           const shouldLabel =
             !compact &&
             (activeChannel === channel ||
-              (!activeChannel && point.offer.kind === "api" && (point.model.benchmark?.intelligenceIndex ?? 0) >= 44)) &&
+              (!activeChannel && point.offer.kind === "api" && (point.intelligenceIndex ?? 0) >= 44)) &&
             !labeledModels.has(point.model.id);
           if (shouldLabel) labeledModels.add(point.model.id);
           const isEstimate = point.offer.evidence.level === "estimated";
           return {
             value: [
               convertUsd(point.costUsd, props.currency, props.usdToCny),
-              point.model.benchmark?.intelligenceIndex ?? 0,
+              point.intelligenceIndex ?? 0,
             ],
             point,
             symbol: point.offer.kind === "api" ? "circle" : isEstimate ? "emptyDiamond" : "diamond",
@@ -164,7 +164,7 @@ export function PriceChart(props: PriceChartProps) {
         itemStyle: { color: "#00a6a6", borderColor: "#00a6a6", borderWidth: 0 },
         labelLayout: { hideOverlap: true, moveOverlap: "shiftY" },
         data: frontier.map((point) => ({
-          value: [convertUsd(point.costUsd, props.currency, props.usdToCny), point.model.benchmark?.intelligenceIndex ?? 0],
+          value: [convertUsd(point.costUsd, props.currency, props.usdToCny), point.intelligenceIndex ?? 0],
           point,
           symbol: "none",
           symbolSize: 0,
@@ -196,6 +196,10 @@ export function PriceChart(props: PriceChartProps) {
             const benchmark = point.model.benchmark;
             const evidence = { official: "官方", estimated: "估算" }[point.offer.evidence.level];
             const subscription = point.subscriptionCost;
+            const intelligence =
+              point.intelligenceBonus > 0
+                ? `<div class="chart-tip__row"><span>综合 Index</span><b>${point.intelligenceIndex?.toFixed(1)}</b></div><div class="chart-tip__row"><span>AA Index / 全榜</span><b>${benchmark?.intelligenceIndex.toFixed(1)} · #${benchmark?.globalRank}</b></div><div class="chart-tip__row"><span>Codex 工具加成</span><b>+${point.intelligenceBonus.toFixed(1)}</b></div>`
+                : `<div class="chart-tip__row"><span>Intelligence / 全榜</span><b>${point.intelligenceIndex?.toFixed(1)} · #${benchmark?.globalRank}</b></div>`;
             const extra =
               point.offer.kind === "subscription"
                 ? `<div class="chart-tip__row"><span>优惠倍数</span><b>${subscription?.effectiveMultiplier.toFixed(2)}×</b></div><div class="chart-tip__row"><span>月 API 等值</span><b>${formatter.format(
@@ -223,7 +227,7 @@ export function PriceChart(props: PriceChartProps) {
               point.model.name,
             )}</strong><small>${escapeHtml(point.offer.label)}</small><div class="chart-tip__price">${formatter.format(
               convertUsd(point.costUsd, props.currency, props.usdToCny),
-            )}</div><div class="chart-tip__row"><span>Intelligence / 全榜</span><b>${benchmark?.intelligenceIndex.toFixed(1)} · #${benchmark?.globalRank}</b></div>${extra}<div class="chart-tip__muted">数据 ${escapeHtml(
+            )}</div>${intelligence}${extra}<div class="chart-tip__muted">数据 ${escapeHtml(
               point.offer.evidence.asOf,
             )}</div></div>`;
           },

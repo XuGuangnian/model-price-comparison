@@ -3,13 +3,14 @@ import { lazy, Suspense, useMemo, useState } from "react";
 import { ComparisonTable } from "./components/ComparisonTable";
 import { ControlPanel } from "./components/ControlPanel";
 import snapshotJson from "./data/snapshot.json";
-import { buildComparisonPoints } from "./domain/comparison";
+import { applyCodexIntelligenceBonus, buildComparisonPoints } from "./domain/comparison";
 import { convertUsd, type ComparisonScenario } from "./domain/pricing";
 import { snapshotSchema, type EvidenceLevel } from "./domain/schema";
 
 const snapshot = snapshotSchema.parse(snapshotJson);
 const defaultScenario: ComparisonScenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 const defaultMaximumCostCny = 300;
+const defaultCodexIntelligenceBonus = 1;
 const allChannels = [...new Set(snapshot.offers.map((offer) => offer.provider))].sort();
 const lunaReference = snapshot.models.find((model) => model.id === "gpt-5-6-luna")?.benchmark;
 if (!lunaReference) throw new Error("Snapshot is missing the Luna benchmark reference");
@@ -61,14 +62,19 @@ export function App() {
   const [controlsOpen, setControlsOpen] = useState(false);
   const [minimumIndex, setMinimumIndex] = useState(defaultMinimumIndex);
   const [maximumCostCny, setMaximumCostCny] = useState(defaultMaximumCostCny);
+  const [codexIntelligenceBonus, setCodexIntelligenceBonus] = useState(defaultCodexIntelligenceBonus);
 
-  const allPoints = useMemo(() => buildComparisonPoints(snapshot, scenario), [scenario]);
+  const basePoints = useMemo(() => buildComparisonPoints(snapshot, scenario), [scenario]);
+  const allPoints = useMemo(
+    () => applyCodexIntelligenceBonus(basePoints, codexIntelligenceBonus),
+    [basePoints, codexIntelligenceBonus],
+  );
   const points = useMemo(
     () =>
       allPoints.filter((point) => {
-        const score = point.model.benchmark?.intelligenceIndex;
+        const score = point.intelligenceIndex;
         return (
-          score !== undefined &&
+          score !== null &&
           score >= minimumIndex &&
           convertUsd(point.costUsd, "CNY", snapshot.exchangeRate.usdToCny) <= maximumCostCny &&
           selectedChannels.has(point.offer.provider) &&
@@ -78,11 +84,15 @@ export function App() {
       }),
     [allPoints, maximumCostCny, minimumIndex, selectedChannels, selectedEvidence, selectedKinds],
   );
+  const visibleModelIds = new Set(points.map((point) => point.model.id));
   const belowThreshold = snapshot.models.filter(
-    (model) => model.benchmark && model.benchmark.intelligenceIndex < minimumIndex,
+    (model) =>
+      model.benchmark &&
+      model.benchmark.intelligenceIndex < minimumIndex &&
+      !visibleModelIds.has(model.id),
   );
   const unscored = snapshot.models.filter((model) => !model.benchmark);
-  const visibleModels = new Set(points.map((point) => point.model.id)).size;
+  const visibleModels = visibleModelIds.size;
   const estimatedCount = points.filter((point) => point.offer.evidence.level === "estimated").length;
 
   function resetControls() {
@@ -92,6 +102,7 @@ export function App() {
     setSelectedEvidence(new Set(["official", "estimated"]));
     setMinimumIndex(defaultMinimumIndex);
     setMaximumCostCny(defaultMaximumCostCny);
+    setCodexIntelligenceBonus(defaultCodexIntelligenceBonus);
   }
 
   const controlProps = {
@@ -108,6 +119,8 @@ export function App() {
     setMinimumIndex,
     maximumCostCny,
     setMaximumCostCny,
+    codexIntelligenceBonus,
+    setCodexIntelligenceBonus,
     onReset: resetControls,
   };
 

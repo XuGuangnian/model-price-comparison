@@ -30,7 +30,9 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(page.getByRole("slider").nth(0)).toHaveValue("90");
   await expect(page.getByRole("slider").nth(1)).toHaveValue("95");
   const maximumCost = page.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" });
+  const codexBonus = page.getByRole("spinbutton", { name: "Codex 工具加分" });
   await expect(maximumCost).toHaveValue("300");
+  await expect(codexBonus).toHaveValue("1");
   await expectNonBlankChart(page);
 
   const mimoApiRow = page.getByRole("row").filter({ has: page.getByText("MiMo API", { exact: true }) });
@@ -39,6 +41,12 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(mimoApiRow).toHaveCount(0);
   await maximumCost.fill("300");
   await expect(mimoApiRow).toHaveCount(1);
+
+  const astraSubscription = page.getByRole("row").filter({ hasText: "GPT-6 AstraChatGPT Pro 20x" });
+  await expect(astraSubscription.locator("td").nth(1)).toContainText("53.7");
+  await codexBonus.fill("0");
+  await expect(astraSubscription.locator("td").nth(1)).toContainText("52.7");
+  await codexBonus.fill("1");
 
   const openCodeChannel = page.getByRole("button", { name: "高亮 OpenCode 渠道" });
   const commandCodeChannel = page.getByRole("button", { name: "高亮 Command Code 渠道" });
@@ -77,6 +85,7 @@ test("mobile drawer and responsive chart", async ({ page }) => {
   const dialog = page.getByRole("dialog", { name: "比较参数" });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" })).toHaveValue("300");
+  await expect(dialog.getByRole("spinbutton", { name: "Codex 工具加分" })).toHaveValue("1");
   const targetRow = page.getByRole("row").filter({ hasText: "DeepSeek V4.1 FlashGOAT Plan" });
   const costBefore = await targetRow.locator("td.cost-cell").textContent();
   await dialog.getByRole("slider").nth(1).fill("70");

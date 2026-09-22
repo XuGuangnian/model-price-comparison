@@ -16,7 +16,7 @@ export function ComparisonTable({ points, currency, usdToCny }: ComparisonTableP
       [...points].sort((left, right) =>
         sort === "cost"
           ? left.costUsd - right.costUsd
-          : (right.model.benchmark?.intelligenceIndex ?? 0) - (left.model.benchmark?.intelligenceIndex ?? 0),
+          : (right.intelligenceIndex ?? 0) - (left.intelligenceIndex ?? 0),
       ),
     [points, sort],
   );
@@ -55,8 +55,12 @@ export function ComparisonTable({ points, currency, usdToCny }: ComparisonTableP
                 <span>{point.offer.label}</span>
               </td>
               <td className="numeric-cell">
-                <strong>{point.model.benchmark?.intelligenceIndex.toFixed(1)}</strong>
-                <span>#{point.model.benchmark?.globalRank}</span>
+                <strong>{point.intelligenceIndex?.toFixed(1)}</strong>
+                <span>
+                  {point.intelligenceBonus > 0
+                    ? `AA ${point.model.benchmark?.intelligenceIndex.toFixed(1)} +${point.intelligenceBonus.toFixed(1)}`
+                    : `#${point.model.benchmark?.globalRank}`}
+                </span>
               </td>
               <td className="numeric-cell cost-cell">
                 {formatter.format(convertUsd(point.costUsd, currency, usdToCny))}
