@@ -4,12 +4,12 @@ import { ComparisonTable } from "./components/ComparisonTable";
 import { ControlPanel } from "./components/ControlPanel";
 import snapshotJson from "./data/snapshot.json";
 import { buildComparisonPoints } from "./domain/comparison";
-import type { ComparisonScenario } from "./domain/pricing";
+import { convertUsd, type ComparisonScenario } from "./domain/pricing";
 import { snapshotSchema, type EvidenceLevel } from "./domain/schema";
 
 const snapshot = snapshotSchema.parse(snapshotJson);
 const defaultScenario: ComparisonScenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
-const defaultMaximumCostUsd = 300;
+const defaultMaximumCostCny = 300;
 const allChannels = [...new Set(snapshot.offers.map((offer) => offer.provider))].sort();
 const lunaReference = snapshot.models.find((model) => model.id === "gpt-5-6-luna")?.benchmark;
 if (!lunaReference) throw new Error("Snapshot is missing the Luna benchmark reference");
@@ -60,7 +60,7 @@ export function App() {
   const [showPareto, setShowPareto] = useState(true);
   const [controlsOpen, setControlsOpen] = useState(false);
   const [minimumIndex, setMinimumIndex] = useState(defaultMinimumIndex);
-  const [maximumCostUsd, setMaximumCostUsd] = useState(defaultMaximumCostUsd);
+  const [maximumCostCny, setMaximumCostCny] = useState(defaultMaximumCostCny);
 
   const allPoints = useMemo(() => buildComparisonPoints(snapshot, scenario), [scenario]);
   const points = useMemo(
@@ -70,13 +70,13 @@ export function App() {
         return (
           score !== undefined &&
           score >= minimumIndex &&
-          point.costUsd <= maximumCostUsd &&
+          convertUsd(point.costUsd, "CNY", snapshot.exchangeRate.usdToCny) <= maximumCostCny &&
           selectedChannels.has(point.offer.provider) &&
           selectedKinds.has(point.offer.kind) &&
           selectedEvidence.has(point.offer.evidence.level)
         );
       }),
-    [allPoints, maximumCostUsd, minimumIndex, selectedChannels, selectedEvidence, selectedKinds],
+    [allPoints, maximumCostCny, minimumIndex, selectedChannels, selectedEvidence, selectedKinds],
   );
   const belowThreshold = snapshot.models.filter(
     (model) => model.benchmark && model.benchmark.intelligenceIndex < minimumIndex,
@@ -91,7 +91,7 @@ export function App() {
     setSelectedKinds(new Set(["api", "subscription"]));
     setSelectedEvidence(new Set(["official", "estimated"]));
     setMinimumIndex(defaultMinimumIndex);
-    setMaximumCostUsd(defaultMaximumCostUsd);
+    setMaximumCostCny(defaultMaximumCostCny);
   }
 
   const controlProps = {
@@ -106,10 +106,8 @@ export function App() {
     setScenario,
     minimumIndex,
     setMinimumIndex,
-    maximumCostUsd,
-    setMaximumCostUsd,
-    currency,
-    usdToCny: snapshot.exchangeRate.usdToCny,
+    maximumCostCny,
+    setMaximumCostCny,
     onReset: resetControls,
   };
 

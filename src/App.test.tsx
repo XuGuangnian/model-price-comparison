@@ -12,8 +12,8 @@ describe("comparison workbench", () => {
   it("renders the default filtered snapshot", async () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "模型价格图谱" })).toBeInTheDocument();
-    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("13 模型");
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("39 points · USD");
+    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("11 模型");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("29 points · USD");
     expect(screen.getByText("DeepSeek V4 Pro 0813")).toBeInTheDocument();
     expect(screen.queryByText("GPT-5.5")).not.toBeInTheDocument();
     expect(screen.getByRole("slider", { name: /输入 : 输出/ })).toHaveValue("90");
@@ -24,18 +24,18 @@ describe("comparison workbench", () => {
   it("switches currency while keeping unified subscription valuation", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "CNY" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("39 points · CNY");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("29 points · CNY");
     expect(screen.getByText("订阅按月度 API 等值自动折算")).toBeInTheDocument();
     expect(screen.getByText(/月费 ¥579\.92/)).toBeInTheDocument();
-    expect(screen.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" })).toHaveValue(2024.61);
+    expect(screen.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" })).toHaveValue(300);
   });
 
   it("filters estimates and applies a custom Index threshold", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("checkbox", { name: "估算" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("12 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("4 points");
     fireEvent.change(screen.getByRole("spinbutton", { name: "最低 Intelligence Index" }), { target: { value: "0" } });
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("14 points");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("5 points");
   });
 
   it("filters by maximum cost and restores the default limit", () => {
