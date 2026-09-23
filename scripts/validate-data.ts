@@ -3,9 +3,9 @@ import catalogJson from "../data/catalog.json" with { type: "json" };
 import { snapshotSchema } from "../src/domain/schema";
 
 const snapshot = snapshotSchema.parse(snapshotJson);
-const luna = snapshot.models.find((model) => model.id === "gpt-5-6-luna");
+const luna = snapshot.models.find((model) => model.id === "gpt-6-luna");
 
-if (!luna?.benchmark) throw new Error("GPT-5.6 Luna must have an Artificial Analysis benchmark");
+if (!luna?.benchmark) throw new Error("GPT-6 Luna must have an Artificial Analysis benchmark");
 const catalogOfferIds = [...catalogJson.offers].map((offer) => offer.id).sort();
 const snapshotOfferIds = snapshot.offers.map((offer) => offer.id).sort();
 

@@ -16,9 +16,9 @@
       "benchmark": {
         "artificialAnalysisId": "1f054429-397e-4fdb-9e71-67bc92c1735e",
         "intelligenceIndex": 38.3556437590607,
-        "globalRank": 42,
-        "indexVersion": "4.3",
-        "fetchedAt": "2026-09-21T06:20:32.407Z"
+        "globalRank": 57,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
       }
     },
     {
@@ -28,7 +28,14 @@
       "family": "GPT-5.6",
       "version": "5.6 Luna · max",
       "releaseDate": "2026-07-09",
-      "aaSlug": "gpt-5-6-luna"
+      "aaSlug": "gpt-5-6-luna",
+      "benchmark": {
+        "artificialAnalysisId": "426d24c8-49ae-482a-b4a8-20f1c53f21c1",
+        "intelligenceIndex": 37.3244239690841,
+        "globalRank": 60,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "gpt-5-6-terra",
@@ -37,7 +44,14 @@
       "family": "GPT-5.6",
       "version": "5.6 Terra · max",
       "releaseDate": "2026-07-09",
-      "aaSlug": "gpt-5-6-terra"
+      "aaSlug": "gpt-5-6-terra",
+      "benchmark": {
+        "artificialAnalysisId": "bcf8db0a-3bb6-4d82-9516-0f57370c85a6",
+        "intelligenceIndex": 42.0829248239494,
+        "globalRank": 39,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "gpt-5-6-sol",
@@ -46,7 +60,14 @@
       "family": "GPT-5.6",
       "version": "5.6 Sol · max",
       "releaseDate": "2026-07-09",
-      "aaSlug": "gpt-5-6-sol"
+      "aaSlug": "gpt-5-6-sol",
+      "benchmark": {
+        "artificialAnalysisId": "d93edfe8-bf35-49ad-b56e-b18116142a1c",
+        "intelligenceIndex": 46.9727068915036,
+        "globalRank": 19,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "gpt-6-astra",
@@ -55,7 +76,14 @@
       "family": "GPT-6",
       "version": "6 Astra · max",
       "releaseDate": "2026-09-03",
-      "aaSlug": "gpt-6-astra"
+      "aaSlug": "gpt-6-astra",
+      "benchmark": {
+        "artificialAnalysisId": "2f339a97-9a0d-499a-9cb5-e0db665bfa25",
+        "intelligenceIndex": 52.673669395513,
+        "globalRank": 6,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "deepseek-v4-1-flash",
@@ -64,7 +92,14 @@
       "family": "DeepSeek V4",
       "version": "V4.1 Flash · max",
       "releaseDate": "2026-09-10",
-      "aaSlug": "deepseek-v4-1-flash"
+      "aaSlug": "deepseek-v4-1-flash",
+      "benchmark": {
+        "artificialAnalysisId": "dbe7c625-3100-4463-b479-a228c41f75dd",
+        "intelligenceIndex": 39.456167472527,
+        "globalRank": 51,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "deepseek-v4-pro",
@@ -73,7 +108,14 @@
       "family": "DeepSeek V4 Pro",
       "version": "V4 Pro 0813 · max",
       "releaseDate": "2026-08-13",
-      "aaSlug": "deepseek-v4-pro"
+      "aaSlug": "deepseek-v4-pro",
+      "benchmark": {
+        "artificialAnalysisId": "83173329-c09a-41f1-a028-a282a5f908d7",
+        "intelligenceIndex": 35.9967791278402,
+        "globalRank": 64,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "mimo-v2-6-pro",
@@ -86,9 +128,9 @@
       "benchmark": {
         "artificialAnalysisId": "24d8fdfe-6241-424e-b7b7-1b6efb06e4fb",
         "intelligenceIndex": 46.3242065310383,
-        "globalRank": 17,
-        "indexVersion": "4.3",
-        "fetchedAt": "2026-09-22T01:38:03.806Z"
+        "globalRank": 23,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
       }
     },
     {
@@ -107,7 +149,14 @@
       "family": "GLM",
       "version": "5.3 · max",
       "releaseDate": "2026-08-18",
-      "aaSlug": "glm-5-3"
+      "aaSlug": "glm-5-3",
+      "benchmark": {
+        "artificialAnalysisId": "cd684ea4-b475-4269-b001-d469d06d8a7a",
+        "intelligenceIndex": 44.777392385614,
+        "globalRank": 28,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "grok-4-6",
@@ -116,7 +165,14 @@
       "family": "Grok",
       "version": "4.6 · high",
       "releaseDate": "2026-08-12",
-      "aaSlug": "grok-4-6"
+      "aaSlug": "grok-4-6",
+      "benchmark": {
+        "artificialAnalysisId": "c8adc5cf-fd5a-407b-af51-dc3bede3e49c",
+        "intelligenceIndex": 44.3113073012592,
+        "globalRank": 29,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "claude-fable-5",
@@ -128,10 +184,10 @@
       "aaSlug": "claude-fable-5",
       "benchmark": {
         "artificialAnalysisId": "cd55210d-358e-4df1-ba9c-9acb5f186cc9",
-        "intelligenceIndex": 49.6,
-        "globalRank": 8,
-        "indexVersion": "4.3",
-        "fetchedAt": "2026-09-21T06:20:32.407Z"
+        "intelligenceIndex": 49.6258202733378,
+        "globalRank": 13,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
       }
     },
     {
@@ -141,7 +197,14 @@
       "family": "Claude",
       "version": "Fable 5.1 · max",
       "releaseDate": "2026-09-01",
-      "aaSlug": "claude-fable-5-1"
+      "aaSlug": "claude-fable-5-1",
+      "benchmark": {
+        "artificialAnalysisId": "3e87c73e-a257-495e-9730-367a66229811",
+        "intelligenceIndex": 53.3549259623252,
+        "globalRank": 4,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "claude-opus-5",
@@ -153,10 +216,10 @@
       "aaSlug": "claude-opus-5",
       "benchmark": {
         "artificialAnalysisId": "b8fc61f7-5e9a-49e6-8547-6ac56db24627",
-        "intelligenceIndex": 50.8,
-        "globalRank": 6,
-        "indexVersion": "4.3",
-        "fetchedAt": "2026-09-21T06:20:32.407Z"
+        "intelligenceIndex": 50.7771115797629,
+        "globalRank": 11,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
       }
     },
     {
@@ -169,10 +232,10 @@
       "aaSlug": "claude-sonnet-5",
       "benchmark": {
         "artificialAnalysisId": "23c86e4a-c769-43c0-a056-79e3cd15834f",
-        "intelligenceIndex": 38.2,
-        "globalRank": 43,
-        "indexVersion": "4.3",
-        "fetchedAt": "2026-09-21T06:20:32.407Z"
+        "intelligenceIndex": 38.1638712882576,
+        "globalRank": 58,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
       }
     },
     {
@@ -185,10 +248,10 @@
       "aaSlug": "muse-spark-1-2",
       "benchmark": {
         "artificialAnalysisId": "04ee6719-0327-463b-a1a1-70a6a78254f9",
-        "intelligenceIndex": 39.6,
-        "globalRank": 36,
-        "indexVersion": "4.3",
-        "fetchedAt": "2026-09-21T06:20:32.407Z"
+        "intelligenceIndex": 39.5758607970943,
+        "globalRank": 50,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
       }
     },
     {
@@ -198,7 +261,14 @@
       "family": "Muse Spark",
       "version": "1.3 · max",
       "releaseDate": "2026-09-02",
-      "aaSlug": "muse-spark-1-3"
+      "aaSlug": "muse-spark-1-3",
+      "benchmark": {
+        "artificialAnalysisId": "9999672c-b687-4026-9c15-5cef02ff53bb",
+        "intelligenceIndex": 48.0923107719685,
+        "globalRank": 17,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     },
     {
       "id": "gemini-3-8-flash",
@@ -207,7 +277,62 @@
       "family": "Gemini",
       "version": "3.8 Flash · high",
       "releaseDate": "2026-09-02",
-      "aaSlug": "gemini-3-8-flash"
+      "aaSlug": "gemini-3-8-flash",
+      "benchmark": {
+        "artificialAnalysisId": "8a999846-4c1d-4ce7-a8b7-1310a7166fd7",
+        "intelligenceIndex": 40.9262321765904,
+        "globalRank": 42,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
+    },
+    {
+      "id": "gpt-6-sol",
+      "name": "GPT-6 Sol",
+      "provider": "OpenAI",
+      "family": "GPT-6",
+      "version": "6 Sol · max",
+      "releaseDate": "2026-09-22",
+      "aaSlug": "gpt-6-sol",
+      "benchmark": {
+        "artificialAnalysisId": "c50ea08c-88c0-4eb7-85b8-27f2bbf6d527",
+        "intelligenceIndex": 47.5276426437724,
+        "globalRank": 18,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
+    },
+    {
+      "id": "gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "provider": "OpenAI",
+      "family": "GPT-6",
+      "version": "6 Luna · max",
+      "releaseDate": "2026-09-22",
+      "aaSlug": "gpt-6-luna",
+      "benchmark": {
+        "artificialAnalysisId": "6fb13851-40ce-4bda-ad3f-6b38e0c5daa7",
+        "intelligenceIndex": 37.2559686869738,
+        "globalRank": 61,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
+    },
+    {
+      "id": "claude-opus-5-5",
+      "name": "Claude Opus 5.5",
+      "provider": "Anthropic",
+      "family": "Claude",
+      "version": "Opus 5.5 · max with fallback",
+      "releaseDate": "2026-09-22",
+      "aaSlug": "claude-opus-5-5",
+      "benchmark": {
+        "artificialAnalysisId": "2f3c4dc9-a450-4303-8697-0237257cf08f",
+        "intelligenceIndex": 57.6223698102963,
+        "globalRank": 1,
+        "indexVersion": "4.3.2",
+        "fetchedAt": "2026-09-23T02:29:54.249Z"
+      }
     }
   ],
   "offers": [
@@ -300,9 +425,9 @@
       "verifyAaPricing": true,
       "evidence": {
         "level": "official",
-        "sourceUrl": "https://developers.openai.com/api/docs/models/compare",
-        "asOf": "2026-09-21",
-        "note": "标准文本价格。"
+        "sourceUrl": "https://developers.openai.com/api/docs/pricing",
+        "asOf": "2026-09-23",
+        "note": "标准文本价格；不含 Fast、Batch、区域处理和长上下文加价。"
       },
       "pricing": {
         "inputUsdPerMillion": 10,
@@ -1193,8 +1318,23 @@
       "provider": "Anthropic",
       "label": "Claude Max 5x",
       "monthlyFeeUsd": 100,
-      "valuation": { "basis": "token-quota", "tokensPerPeriod": 3344500000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
-      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "社区额度数据：Opus 5 月额度 3,344.5M Tokens；95% 缓存命中、0.5% 输出占比，数据可能存在偏差。" }
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 3344500000,
+        "periodsPerMonth": 1,
+        "periodLabel": "月",
+        "referenceScenario": {
+          "inputShare": 0.995,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json",
+        "asOf": "2026-09-21",
+        "note": "社区额度数据：Opus 5 月额度 3,344.5M Tokens；95% 缓存命中、0.5% 输出占比，数据可能存在偏差。"
+      }
     },
     {
       "id": "claude-max20-opus",
@@ -1203,8 +1343,23 @@
       "provider": "Anthropic",
       "label": "Claude Max 20x",
       "monthlyFeeUsd": 200,
-      "valuation": { "basis": "token-quota", "tokensPerPeriod": 6689000000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
-      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "社区额度数据：Opus 5 月额度 6,689M Tokens；95% 缓存命中、0.5% 输出占比，数据可能存在偏差。" }
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 6689000000,
+        "periodsPerMonth": 1,
+        "periodLabel": "月",
+        "referenceScenario": {
+          "inputShare": 0.995,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json",
+        "asOf": "2026-09-21",
+        "note": "社区额度数据：Opus 5 月额度 6,689M Tokens；95% 缓存命中、0.5% 输出占比，数据可能存在偏差。"
+      }
     },
     {
       "id": "claude-max5-sonnet",
@@ -1213,8 +1368,23 @@
       "provider": "Anthropic",
       "label": "Claude Max 5x",
       "monthlyFeeUsd": 100,
-      "valuation": { "basis": "token-quota", "tokensPerPeriod": 5574100000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
-      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "Sonnet 家族 credits 系数推算：5,574.1M Tokens/月；未针对 Sonnet 5 单独实测。" }
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 5574100000,
+        "periodsPerMonth": 1,
+        "periodLabel": "月",
+        "referenceScenario": {
+          "inputShare": 0.995,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json",
+        "asOf": "2026-09-21",
+        "note": "Sonnet 家族 credits 系数推算：5,574.1M Tokens/月；未针对 Sonnet 5 单独实测。"
+      }
     },
     {
       "id": "claude-max20-sonnet",
@@ -1223,8 +1393,163 @@
       "provider": "Anthropic",
       "label": "Claude Max 20x",
       "monthlyFeeUsd": 200,
-      "valuation": { "basis": "token-quota", "tokensPerPeriod": 11148300000, "periodsPerMonth": 1, "periodLabel": "月", "referenceScenario": { "inputShare": 0.995, "cacheReadRate": 0.95, "cacheWriteRate": 0 } },
-      "evidence": { "level": "estimated", "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json", "asOf": "2026-09-21", "note": "Sonnet 家族 credits 系数推算：11,148.3M Tokens/月；未针对 Sonnet 5 单独实测。" }
+      "valuation": {
+        "basis": "token-quota",
+        "tokensPerPeriod": 11148300000,
+        "periodsPerMonth": 1,
+        "periodLabel": "月",
+        "referenceScenario": {
+          "inputShare": 0.995,
+          "cacheReadRate": 0.95,
+          "cacheWriteRate": 0
+        }
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://github.com/wmpeng/codingplan/blob/main/plan-models.json",
+        "asOf": "2026-09-21",
+        "note": "Sonnet 家族 credits 系数推算：11,148.3M Tokens/月；未针对 Sonnet 5 单独实测。"
+      }
+    },
+    {
+      "id": "openai-api-gpt-6-sol",
+      "kind": "api",
+      "modelId": "gpt-6-sol",
+      "provider": "OpenAI",
+      "label": "OpenAI API",
+      "verifyAaPricing": true,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://developers.openai.com/api/docs/pricing",
+        "asOf": "2026-09-23",
+        "note": "标准文本价格；不含 Fast、Batch、区域处理和长上下文加价。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 2,
+        "cacheReadUsdPerMillion": 0.2,
+        "cacheWriteUsdPerMillion": 2.5,
+        "outputUsdPerMillion": 10
+      }
+    },
+    {
+      "id": "openai-api-gpt-6-luna",
+      "kind": "api",
+      "modelId": "gpt-6-luna",
+      "provider": "OpenAI",
+      "label": "OpenAI API",
+      "verifyAaPricing": true,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://developers.openai.com/api/docs/pricing",
+        "asOf": "2026-09-23",
+        "note": "标准文本价格；不含 Fast、Batch、区域处理和长上下文加价。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 0.1,
+        "cacheReadUsdPerMillion": 0.01,
+        "cacheWriteUsdPerMillion": 0.125,
+        "outputUsdPerMillion": 0.5
+      }
+    },
+    {
+      "id": "anthropic-api-claude-opus-5-5",
+      "kind": "api",
+      "modelId": "claude-opus-5-5",
+      "provider": "Anthropic",
+      "label": "Anthropic API",
+      "verifyAaPricing": true,
+      "evidence": {
+        "level": "official",
+        "sourceUrl": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "asOf": "2026-09-23",
+        "note": "全球标准文本价格，缓存写入采用 5 分钟 TTL；不含 Fast、Batch 和区域处理加价。"
+      },
+      "pricing": {
+        "inputUsdPerMillion": 4,
+        "cacheReadUsdPerMillion": 0.2,
+        "cacheWriteUsdPerMillion": 5,
+        "outputUsdPerMillion": 20
+      }
+    },
+    {
+      "id": "chatgpt-pro5-gpt-6-sol",
+      "kind": "subscription",
+      "modelId": "gpt-6-sol",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 5x",
+      "monthlyFeeUsd": 100,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 479.9575,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-23",
+        "note": "旧版额度暂估：暂沿用 GPT-5.6 Sol 的 Pro 5x 单模型周 API 等值 $479.9575，按每月 4 周计算；原始依据为 Codex Radar 2026-09-20 数据，非 GPT-6 实测或官方保证额度，待新版实测后更新。Pro 5x 总额度按同模型 Pro 20x 的 1/4 估算。"
+      }
+    },
+    {
+      "id": "chatgpt-pro20-gpt-6-sol",
+      "kind": "subscription",
+      "modelId": "gpt-6-sol",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 20x",
+      "monthlyFeeUsd": 200,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 1919.83,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-23",
+        "note": "旧版额度暂估：暂沿用 GPT-5.6 Sol 的 Pro 20x 单模型周 API 等值 $1,919.8300，按每月 4 周计算；原始依据为 Codex Radar 2026-09-20 数据，非 GPT-6 实测或官方保证额度，待新版实测后更新。"
+      }
+    },
+    {
+      "id": "chatgpt-pro5-gpt-6-luna",
+      "kind": "subscription",
+      "modelId": "gpt-6-luna",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 5x",
+      "monthlyFeeUsd": 100,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 286.275,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-23",
+        "note": "旧版额度暂估：暂沿用 GPT-5.6 Luna 的 Pro 5x 单模型周 API 等值 $286.2750，按每月 4 周计算；原始依据为 Codex Radar 2026-09-20 数据，非 GPT-6 实测或官方保证额度，待新版实测后更新。Pro 5x 总额度按同模型 Pro 20x 的 1/4 估算。"
+      }
+    },
+    {
+      "id": "chatgpt-pro20-gpt-6-luna",
+      "kind": "subscription",
+      "modelId": "gpt-6-luna",
+      "provider": "OpenAI",
+      "label": "ChatGPT Pro 20x",
+      "monthlyFeeUsd": 200,
+      "valuation": {
+        "basis": "api-credit",
+        "apiCreditUsdPerPeriod": 1145.1,
+        "periodsPerMonth": 4,
+        "periodLabel": "周"
+      },
+      "evidence": {
+        "level": "estimated",
+        "sourceUrl": "https://codexradar.com/",
+        "asOf": "2026-09-23",
+        "note": "旧版额度暂估：暂沿用 GPT-5.6 Luna 的 Pro 20x 单模型周 API 等值 $1,145.1000，按每月 4 周计算；原始依据为 Codex Radar 2026-09-20 数据，非 GPT-6 实测或官方保证额度，待新版实测后更新。"
+      }
     }
   ]
 }

@@ -8,7 +8,7 @@ const scenario = { inputShare: 0.9, cacheReadRate: 0.95, cacheWriteRate: 0 };
 
 describe("comparison points", () => {
   it("builds every priced API and subscription offer", () => {
-    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(52);
+    expect(buildComparisonPoints(snapshot, scenario)).toHaveLength(59);
   });
 
   it("uses the cheapest API offer as the subscription reference", () => {
@@ -27,7 +27,7 @@ describe("comparison points", () => {
 
   it("prices Pro 5x at twice the equivalent cost of Pro 20x", () => {
     const points = buildComparisonPoints(snapshot, scenario);
-    for (const model of ["luna", "sol", "astra"]) {
+    for (const model of ["luna", "sol", "astra", "gpt-6-sol", "gpt-6-luna"]) {
       const pro5 = points.find((point) => point.id === `chatgpt-pro5-${model}`);
       const pro20 = points.find((point) => point.id === `chatgpt-pro20-${model}`);
       expect(pro5?.costUsd).toBeCloseTo((pro20?.costUsd ?? 0) * 2);
@@ -37,15 +37,26 @@ describe("comparison points", () => {
     }
   });
 
-  it("applies a bounded Codex bonus only to ChatGPT subscriptions", () => {
+  it("applies a bounded Codex bonus to ChatGPT subscriptions and GPT APIs", () => {
     const points = applyCodexIntelligenceBonus(buildComparisonPoints(snapshot, scenario), 4);
     const chatgpt = points.find((point) => point.id === "chatgpt-pro20-astra");
     const api = points.find((point) => point.id === "openai-api-astra");
     const openCode = points.find((point) => point.id === "opencode-go-luna");
-    expect(chatgpt?.intelligenceIndex).toBeCloseTo(55.7);
+    expect(chatgpt?.intelligenceIndex).toBeCloseTo(55.7, 1);
     expect(chatgpt?.intelligenceBonus).toBe(3);
-    expect(api?.intelligenceIndex).toBeCloseTo(52.7);
-    expect(openCode?.intelligenceIndex).toBeCloseTo(37.3);
+    expect(api?.intelligenceIndex).toBeCloseTo(55.7, 1);
+    expect(api?.intelligenceBonus).toBe(3);
+    expect(api?.model.benchmark?.intelligenceIndex).toBeCloseTo(52.7, 1);
+    for (const point of points.filter((point) => point.offer.kind === "api")) {
+      const expectedBonus = point.model.id.startsWith("gpt-") && point.model.benchmark ? 3 : 0;
+      expect(point.intelligenceBonus).toBe(expectedBonus);
+    }
+    const reset = applyCodexIntelligenceBonus(points, -1);
+    for (const point of reset) {
+      expect(point.intelligenceBonus).toBe(0);
+      expect(point.intelligenceIndex).toBe(point.model.benchmark?.intelligenceIndex ?? null);
+    }
+    expect(openCode?.intelligenceIndex).toBeCloseTo(37.3, 1);
   });
 
   it("converts MiMo Token Plan credits into model-specific API value", () => {

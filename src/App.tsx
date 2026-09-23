@@ -12,7 +12,7 @@ const defaultScenario: ComparisonScenario = { inputShare: 0.9, cacheReadRate: 0.
 const defaultMaximumCostCny = 300;
 const defaultCodexIntelligenceBonus = 1;
 const allChannels = [...new Set(snapshot.offers.map((offer) => offer.provider))].sort();
-const lunaReference = snapshot.models.find((model) => model.id === "gpt-5-6-luna")?.benchmark;
+const lunaReference = snapshot.models.find((model) => model.id === "gpt-6-luna")?.benchmark;
 if (!lunaReference) throw new Error("Snapshot is missing the Luna benchmark reference");
 const defaultMinimumIndex = lunaReference.intelligenceIndex;
 const indexVersion = lunaReference.indexVersion;

@@ -26,7 +26,7 @@ test("desktop comparison workflow", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "模型价格图谱" })).toBeVisible();
-  await expect(page.getByText("11 模型")).toBeVisible();
+  await expect(page.getByText("13 模型")).toBeVisible();
   await expect(page.getByRole("slider").nth(0)).toHaveValue("90");
   await expect(page.getByRole("slider").nth(1)).toHaveValue("95");
   const maximumCost = page.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" });
@@ -34,6 +34,13 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(maximumCost).toHaveValue("300");
   await expect(codexBonus).toHaveValue("1");
   await expectNonBlankChart(page);
+  for (const model of ["GPT-6 Sol", "GPT-6 Luna"]) {
+    for (const tier of ["5x", "20x"]) {
+      const row = page.getByRole("row").filter({ hasText: model + "ChatGPT Pro " + tier });
+      await expect(row).toHaveCount(1);
+      await expect(row).toContainText("≈ 估算");
+    }
+  }
 
   const mimoApiRow = page.getByRole("row").filter({ has: page.getByText("MiMo API", { exact: true }) });
   await expect(mimoApiRow).toHaveCount(1);
@@ -42,9 +49,12 @@ test("desktop comparison workflow", async ({ page }) => {
   await maximumCost.fill("300");
   await expect(mimoApiRow).toHaveCount(1);
 
+  const lunaApi = page.getByRole("row").filter({ hasText: "GPT-6 LunaOpenAI API" });
+  await expect(lunaApi.locator("td").nth(1)).toContainText("38.3");
   const astraSubscription = page.getByRole("row").filter({ hasText: "GPT-6 AstraChatGPT Pro 20x" });
   await expect(astraSubscription.locator("td").nth(1)).toContainText("53.7");
   await codexBonus.fill("0");
+  await expect(lunaApi.locator("td").nth(1)).toContainText("37.3");
   await expect(astraSubscription.locator("td").nth(1)).toContainText("52.7");
   await codexBonus.fill("1");
 
@@ -68,8 +78,8 @@ test("desktop comparison workflow", async ({ page }) => {
   await expect(page.locator("td.cost-cell").filter({ hasText: "¥" }).first()).toBeVisible();
 
   await page.getByRole("spinbutton", { name: "最低 Intelligence Index" }).fill("0");
-  await expect(page.getByText("12 模型")).toBeVisible();
-  await expect(page.getByText("30 方案")).toBeVisible();
+  await expect(page.getByText("14 模型")).toBeVisible();
+  await expect(page.getByText("35 方案")).toBeVisible();
   await expect(page.getByRole("row").filter({ hasText: "DeepSeek V4 Pro 0813" })).toHaveCount(1);
   await expect(page.getByRole("row").filter({ hasText: "GPT-5.6 Terra" })).toHaveCount(0);
 });
@@ -78,6 +88,13 @@ test("mobile drawer and responsive chart", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
   await expectNonBlankChart(page);
+  for (const model of ["GPT-6 Sol", "GPT-6 Luna"]) {
+    for (const tier of ["5x", "20x"]) {
+      const row = page.getByRole("row").filter({ hasText: model + "ChatGPT Pro " + tier });
+      await expect(row).toHaveCount(1);
+      await expect(row).toContainText("≈ 估算");
+    }
+  }
   await expect(page.getByRole("group", { name: "渠道高亮" })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 

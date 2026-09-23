@@ -12,9 +12,17 @@ describe("comparison workbench", () => {
   it("renders the default filtered snapshot", async () => {
     render(<App />);
     expect(screen.getByRole("heading", { name: "模型价格图谱" })).toBeInTheDocument();
-    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("11 模型");
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("29 points · USD");
-    expect(screen.getByText("DeepSeek V4 Pro 0813")).toBeInTheDocument();
+    expect(screen.getByLabelText("当前结果摘要")).toHaveTextContent("13 模型");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("34 points · USD");
+    for (const model of ["GPT-6 Luna"]) {
+      expect(screen.getByRole("row", { name: new RegExp(model + "(?:OpenAI|Anthropic) API") })).toBeInTheDocument();
+    }
+    for (const model of ["GPT-6 Sol", "GPT-6 Luna"]) {
+      for (const tier of ["5x", "20x"]) {
+        const row = screen.getByRole("row", { name: new RegExp(model + "ChatGPT Pro " + tier) });
+        expect(within(row).getByText("≈ 估算")).toBeInTheDocument();
+      }
+    }
     expect(screen.queryByText("GPT-5.5")).not.toBeInTheDocument();
     expect(screen.getByRole("slider", { name: /输入 : 输出/ })).toHaveValue("90");
     expect(screen.getByRole("slider", { name: /缓存命中/ })).toHaveValue("95");
@@ -25,7 +33,7 @@ describe("comparison workbench", () => {
   it("switches currency while keeping unified subscription valuation", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "CNY" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("29 points · CNY");
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("34 points · CNY");
     expect(screen.getByText("订阅按月度 API 等值自动折算")).toBeInTheDocument();
     expect(screen.getByText(/月费 ¥579\.92/)).toBeInTheDocument();
     expect(screen.getByRole("spinbutton", { name: "最高单价（1 亿 Token）" })).toHaveValue(300);
@@ -34,9 +42,9 @@ describe("comparison workbench", () => {
   it("filters estimates and applies a custom Index threshold", async () => {
     render(<App />);
     fireEvent.click(screen.getByRole("checkbox", { name: "估算" }));
-    expect(await screen.findByTestId("price-chart")).toHaveTextContent("4 points");
-    fireEvent.change(screen.getByRole("spinbutton", { name: "最低 Intelligence Index" }), { target: { value: "0" } });
     expect(await screen.findByTestId("price-chart")).toHaveTextContent("5 points");
+    fireEvent.change(screen.getByRole("spinbutton", { name: "最低 Intelligence Index" }), { target: { value: "0" } });
+    expect(await screen.findByTestId("price-chart")).toHaveTextContent("6 points");
   });
 
   it("filters by maximum cost and restores the default limit", () => {
@@ -49,17 +57,21 @@ describe("comparison workbench", () => {
     expect(maximumCost).toHaveValue(300);
   });
 
-  it("adjusts only ChatGPT subscription intelligence and resets to plus one", () => {
+  it("adjusts ChatGPT subscription and GPT API intelligence and resets to plus one", () => {
     render(<App />);
     const bonus = screen.getByRole("spinbutton", { name: "Codex 工具加分" });
+    const lunaApi = screen.getByRole("row", { name: /GPT-6 LunaOpenAI API/ });
+    expect(within(lunaApi).getByText("38.3")).toBeInTheDocument();
     const astraSubscription = screen.getByRole("row", { name: /GPT-6 AstraChatGPT Pro 20x/ });
     expect(within(astraSubscription).getByText("53.7")).toBeInTheDocument();
     fireEvent.change(bonus, { target: { value: "0" } });
     expect(within(astraSubscription).getByText("52.7")).toBeInTheDocument();
+    expect(within(lunaApi).getByText("37.3")).toBeInTheDocument();
     fireEvent.change(bonus, { target: { value: "3" } });
     expect(within(astraSubscription).getByText("55.7")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "恢复默认" }));
     expect(bonus).toHaveValue(1);
+    expect(within(lunaApi).getByText("38.3")).toBeInTheDocument();
     expect(within(astraSubscription).getByText("53.7")).toBeInTheDocument();
   });
 

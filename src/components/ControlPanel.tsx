@@ -212,7 +212,7 @@ export function ControlPanel(props: ControlPanelProps) {
         <label className="limit-control">
           <span>
             Codex 工具加成
-            <small>仅 ChatGPT 订阅 · Index</small>
+            <small>ChatGPT 订阅与 GPT API · Index</small>
           </span>
           <span className="bonus-value">
             <input

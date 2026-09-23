@@ -70,8 +70,10 @@ export function applyCodexIntelligenceBonus(points: ComparisonPoint[], bonus: nu
   const normalizedBonus = Math.min(3, Math.max(0, bonus));
   return points.map((point) => {
     const baseIndex = point.model.benchmark?.intelligenceIndex ?? null;
+    const isChatgptSubscription = point.offer.kind === "subscription" && point.offer.id.startsWith("chatgpt-");
+    const isGptApi = point.offer.kind === "api" && point.model.provider === "OpenAI" && point.model.id.startsWith("gpt-");
     const intelligenceBonus =
-      baseIndex !== null && point.offer.kind === "subscription" && point.offer.id.startsWith("chatgpt-")
+      baseIndex !== null && (isChatgptSubscription || isGptApi)
         ? normalizedBonus
         : 0;
     return {
